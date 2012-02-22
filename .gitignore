@@ -2,4 +2,7 @@
 *.lock
 *.swp
 *.vim
+.classpath
+.project
+.settings
 target
