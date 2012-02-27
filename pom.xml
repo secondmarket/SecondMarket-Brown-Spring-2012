@@ -24,6 +24,8 @@
       <url>https://morphia.googlecode.com/svn/mavenrepo</url>
     </repository>
   </repositories>
+  
+  
 =======
       <properties>
         <java.version>1.6</java.version>
