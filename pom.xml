@@ -23,7 +23,7 @@
       <url>https://morphia.googlecode.com/svn/mavenrepo</url>
     </repository>
     
-      <repository>
+    <repository>
       	<id>codehaus</id>
       	<url>http://repository.codehaus.org/org/codehaus</url>
       	<snapshots>
@@ -32,16 +32,8 @@
       	<releases>
       		<enabled>true</enabled>
       	</releases>
-      </repository>
+    </repository>
   </repositories>
-  
-      <properties>
-        <java.version>1.6</java.version>
-        <testGroups>unit</testGroups>
-        <spring.version>3.0.4.RELEASE</spring.version>
-        <org.springframework.version>3.0.4.RELEASE</org.springframework.version>
-        <services.version>1.0.30-SNAPSHOT</services.version>
-    </properties>
   
 
   <dependencies>
