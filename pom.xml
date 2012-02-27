@@ -15,8 +15,26 @@
         <org.springframework.version>3.0.4.RELEASE</org.springframework.version>
         <services.version>1.0.30-SNAPSHOT</services.version>
     </properties>
+    
+  <repository>
+  	<id>codehaus</id>
+  	<url>http://repository.codehaus.org/org/codehaus</url>
+  	<snapshots>
+  		<enabled>true</enabled>
+  	</snapshots>
+  	<releases>
+  		<enabled>true</enabled>
+  	</releases>
+  </repository>
 
   <dependencies>
+  	<dependency>
+  		<groupId>org.codehaus.jackson</groupId>
+  		<artifactId>jackson-mapper-asl</artifactId>
+  		<version>1.6.4</version>
+  		<scope>compile</scope>
+  	</dependency>
+  	
     <dependency>
       <groupId>junit</groupId>
       <artifactId>junit</artifactId>
