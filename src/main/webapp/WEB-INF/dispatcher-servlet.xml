@@ -2,8 +2,22 @@
 <beans xmlns="http://www.springframework.org/schema/beans"
 	   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	   xsi:schemaLocation=" http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
-	   
-	   <bean name="index.html" class="webapp.HelloController" />
+	   	   
 	   <bean class="com.google.code.morphia.Morphia" id="morphia" />
 	   <bean class="com.mongodb.Mongo" id="mongo" />
+	   <bean class="webapp.CompanyDAO" id="companyDao">
+	   	<constructor-arg ref="morphia" index="0" />
+	   	<constructor-arg ref="mongo" index="1" />
+	   	<constructor-arg value="CompanyDb" index="2" />
+	   </bean>
+	   
+	   <bean name="/hello.htm" class="webapp.HelloController">
+	   	<constructor-arg ref="companyDao" />
+	   </bean>
+	   
+	   <bean id="viewResolver" class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+	   	<property name="viewClass" value="org.springframework.web.servlet.view.JstlView"></property>
+        <property name="prefix" value="/WEB-INF/jsp/"></property>
+        <property name="suffix" value=".jsp"></property>
+	   </bean>
 </beans>

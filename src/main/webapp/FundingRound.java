@@ -1,17 +1,12 @@
 package webapp;
 
-import org.bson.types.ObjectId;
-
-import com.google.code.morphia.annotations.Entity;
-import com.google.code.morphia.annotations.Id;
+import com.google.code.morphia.annotations.Embedded;
 
 /*
  * Holds data for a single funding round
  */
-@Entity
-public class FundingRound {
-	@Id ObjectId _id;
-	
+@Embedded
+public class FundingRound {	
 	private double _raisedAmount;
 	private String _roundCode;
 	

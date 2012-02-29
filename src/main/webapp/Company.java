@@ -3,16 +3,16 @@ package webapp;
 import java.util.List;
 import java.util.Map;
 
-import org.apache.commons.logging.LogFactory;
 import org.bson.types.ObjectId;
 
+import com.google.code.morphia.annotations.Embedded;
 import com.google.code.morphia.annotations.Entity;
 import com.google.code.morphia.annotations.Id;
 
 /*
  * Holds data for a single company
  */
-@Entity
+@Entity()
 public class Company {
 	@Id ObjectId _id;
 	private String _name, _homepageUrl, _blogUrl;
@@ -20,6 +20,7 @@ public class Company {
 	private String _overview;
 	private String _imageUrl;
 	private double _totalMoneyRaised;
+	@Embedded
 	private List<FundingRound> _fundingRounds;
 
 	public String getName() { return _name; }
@@ -39,6 +40,10 @@ public class Company {
 		
 	public String getImageUrl() { return _imageUrl; }
 	public void setImageUrl(Map<String, List<List<Object>>> json) {
+		if (json == null) {
+			_imageUrl = null;
+			return;
+		}
 		List<List<Object>> l = json.get("available_sizes");
 		if (l == null || l.size() == 0) {
 			_imageUrl = null;
@@ -52,26 +57,26 @@ public class Company {
 		int len = totalMoney.length();
 		char type = totalMoney.charAt(len - 1);
 		double mult = 1;
-		if (type == 'M') {
-			mult = 1e6;
+		if (!Character.isDigit(type)) {
+			type = Character.toLowerCase(type);
 			totalMoney = totalMoney.substring(1, len - 1); // Ignore dollar sign and type
-		} else if (type == 'B') {
-			mult = 1e9;
-			totalMoney = totalMoney.substring(1, len - 1); // Ignore dollar sign and type
-		} else {
-			totalMoney = totalMoney.substring(1, len); // Ignore dollar sign and type
+			if (type == 'm') {
+				mult = 1e6;
+			} else if (type == 'b') {
+				mult = 1e9;
+			} else if (type == 'k') {
+				mult = 1e3;
+			}
+		}
+		
+		StringBuffer sb = new StringBuffer();
+		for (char c : totalMoney.toCharArray()) {
+			if (Character.isDigit(c) || c == '.') {
+				sb.append(c);
+			}
 		}
 
-		switch (type) {
-		case 'B':
-			mult = 1e9;
-			break;
-		case 'M':
-		default:
-			mult = 1e6;
-			break;			
-		}
-		_totalMoneyRaised = Double.parseDouble(totalMoney) * mult;
+		_totalMoneyRaised = Double.parseDouble(sb.toString()) * mult;
 	}
 	
 	public List<FundingRound> getFundingRounds() { return _fundingRounds; }

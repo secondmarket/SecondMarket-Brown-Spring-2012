@@ -70,23 +70,27 @@ public class CrunchBaseParser {
 		}
 		
 	    LogFactory.getLog(getClass()).info("Parsed " + companies.size() + " companies");
-			
 		return companies;		
 	}
 	
-	Company getCompany(String permalink) throws JsonParseException, JsonMappingException, IOException {
-		URL url = new URL("http://api.crunchbase.com/v/1/company/" + permalink + ".js");
-		
-		@SuppressWarnings("unchecked")
-		Map<String, Object> data = _mapper.readValue(url.openStream(), Map.class);
-		
-		// Exclude companies that are dead, acquired, or public
-		for (String s : EXCLUDED_FIELDS) {
-			if (data.get(s) != null) {
-				return null;
+	Company getCompany(String permalink) throws JsonParseException, JsonMappingException {
+		try {
+			URL url = new URL("http://api.crunchbase.com/v/1/company/" + permalink + ".js");
+			
+			@SuppressWarnings("unchecked")
+			Map<String, Object> data = _mapper.readValue(url.openStream(), Map.class);
+			
+			// Exclude companies that are dead, acquired, or public
+			for (String s : EXCLUDED_FIELDS) {
+				if (data.get(s) != null) {
+					return null;
+				}
 			}
+			
+			return _mapper.convertValue(data, Company.class);
+			
+		} catch (IOException e) {
+			return null;
 		}
-		
-		return _mapper.convertValue(data, Company.class);
 	}
 }
