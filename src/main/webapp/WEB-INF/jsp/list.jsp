@@ -6,7 +6,8 @@
     <h1>Companies</h1>
     <ul>
     <c:forEach items="${companies}" var="company">
-      <li><c:out value="${company.name}" /></li>
+      <li><a href="/companies/<c:out value="${company.permalink}"/>.htm">
+      <c:out value="${company.name}"/></a></li>
     </c:forEach>
     </ul>
   </body>

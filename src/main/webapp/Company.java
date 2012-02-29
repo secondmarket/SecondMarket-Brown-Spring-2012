@@ -8,6 +8,7 @@ import org.bson.types.ObjectId;
 import com.google.code.morphia.annotations.Embedded;
 import com.google.code.morphia.annotations.Entity;
 import com.google.code.morphia.annotations.Id;
+import com.google.code.morphia.annotations.Indexed;
 
 /*
  * Holds data for a single company
@@ -16,16 +17,26 @@ import com.google.code.morphia.annotations.Id;
 public class Company {
 	@Id ObjectId _id;
 	private String _name, _homepageUrl, _blogUrl;
+	@Indexed
+	private String _permalink;
 	private int _numEmployees;
 	private String _overview;
 	private String _imageUrl;
 	private double _totalMoneyRaised;
+	
 	@Embedded
 	private List<FundingRound> _fundingRounds;
 
+	public Company() {
+		_id = new ObjectId();
+	}
+		
 	public String getName() { return _name; }
 	protected void setName(String name) { _name = name; }
 
+	public String getPermalink() { return _permalink; }
+	protected void setPermalink(String permalink) { _permalink = permalink; }
+	
 	public String getHomepageUrl() { return _homepageUrl; }
 	protected void setHomepageUrl(String url) { _homepageUrl = url; }
 
@@ -39,7 +50,7 @@ public class Company {
 	protected void setNumEmployees(int n) { _numEmployees = n; }
 		
 	public String getImageUrl() { return _imageUrl; }
-	public void setImageUrl(Map<String, List<List<Object>>> json) {
+	protected void setImageUrl(Map<String, List<List<Object>>> json) {
 		if (json == null) {
 			_imageUrl = null;
 			return;

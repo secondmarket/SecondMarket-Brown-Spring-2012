@@ -18,6 +18,10 @@
 	   	<constructor-arg ref="companyDao" />
 	   </bean>
 	   
+	   <bean name="/companies/*" class="webapp.CompanyProfileController">
+	   	<constructor-arg ref="companyDao" />
+	   </bean>
+	   
 	   <bean name="/populate_db.htm" class="webapp.PopulateDbController">
 	   	<constructor-arg ref="companyDao" />
 	   </bean>

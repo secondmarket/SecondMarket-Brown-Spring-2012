@@ -12,6 +12,7 @@ import org.codehaus.jackson.annotate.JsonProperty;
  */
 public abstract class CompanyMixIn extends Company {
 	@JsonProperty("name") public abstract String getName();
+	@JsonProperty("permalink") public abstract String getPermalink();
 	@JsonProperty("homepage_url") public abstract String getHomepageUrl();
 	@JsonProperty("blog_url") public abstract String getBlogUrl();
 	@JsonProperty("overview") public abstract String getOverview();
@@ -21,11 +22,12 @@ public abstract class CompanyMixIn extends Company {
 	@JsonProperty("image") public abstract String getImageUrl();
 	
 	@JsonProperty("name") protected abstract void setName(String name);
+	@JsonProperty("permalink") protected abstract void setPermalink(String permalink);
 	@JsonProperty("homepage_url") protected abstract void setHomepageUrl(String url);
 	@JsonProperty("blog_url") protected abstract void setBlogUrl(String url);
-	@JsonProperty("overview") public abstract void setOverview(String overview);
+	@JsonProperty("overview") protected abstract void setOverview(String overview);
 	@JsonProperty("number_of_employees") protected abstract void setNumEmployees(int n);
 	@JsonProperty("total_money_raised") protected abstract void setTotalMoneyRaised(String totalMoney);
 	@JsonProperty("funding_rounds") protected abstract void setFundingRounds(List<FundingRound> rounds);
-	@JsonProperty("image") public abstract void setImageUrl(Map<String, List<List<Object>>> availableUrls);
+	@JsonProperty("image") protected abstract void setImageUrl(Map<String, List<List<Object>>> availableUrls);
 }
