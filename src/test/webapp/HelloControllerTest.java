@@ -9,6 +9,8 @@ public class HelloControllerTest extends TestCase {
     public void testHandleRequestView() throws Exception {		
         HelloController controller = new HelloController(null);
         ModelAndView modelAndView = controller.handleRequest(null, null);		
-        assertEquals("index", modelAndView.getViewName());
+        assertEquals("hello", modelAndView.getViewName());
+        String nowValue = (String) modelAndView.getModel().get("now");
+        assertNotNull(nowValue);
     }
 }

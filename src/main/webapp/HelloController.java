@@ -48,8 +48,8 @@ public class HelloController implements Controller {
     public ModelAndView handleRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
     			
-        _logger.info("Returning index view");
-        
-        return new ModelAndView("hello", "now", "sleep o clock");
+        _logger.info("Returning hello view");
+        String now = "Blah";
+        return new ModelAndView("hello", "now", now);
     }
 }
