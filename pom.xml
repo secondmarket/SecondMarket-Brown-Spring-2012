@@ -108,6 +108,7 @@
       </plugin>
     </plugins>
     <finalName>Brown-SM</finalName>
+    <testSourceDirectory>src/test</testSourceDirectory>
   </build>
 
 </project>
