@@ -12,6 +12,13 @@
 	   </bean>
 	   
 	   <bean name="/hello.htm" class="webapp.HelloController">
+	   </bean>
+	   
+	   <bean name="/list.htm" class="webapp.FetchDataController">
+	   	<constructor-arg ref="companyDao" />
+	   </bean>
+	   
+	   <bean name="/populate_db.htm" class="webapp.PopulateDbController">
 	   	<constructor-arg ref="companyDao" />
 	   </bean>
 	   
