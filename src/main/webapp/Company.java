@@ -72,11 +72,11 @@ public class Company {
 			type = Character.toLowerCase(type);
 			totalMoney = totalMoney.substring(1, len - 1); // Ignore dollar sign and type
 			if (type == 'm') {
-				mult = 1000000;
+				mult = 1e6;
 			} else if (type == 'b') {
-				mult = 1000000000;
+				mult = 1e9;
 			} else if (type == 'k') {
-				mult = 1000;
+				mult = 1e3;
 			}
 		}
 		
