@@ -13,11 +13,19 @@
 		data.addColumn('number','Funding Recieved');
 		data.addColumn('number', 'Market increase/decrease (color)');
 		data.addRow(["Companies",null,0,0]);
+		data.addRow(["Under $20 Million","Companies",0,0]);
+		data.addRow(["Under $5 Million","Under $20 Million",0,0]);
 		
 		var i=0;
+		
     	<c:forEach items="${companies}" var="company">
   			i++;
-     		data.addRow(["<c:out value="${company.name}"/>", "Companies",<c:out value="${company.totalMoneyRaised}"/>,i]); 
+  			if(<c:out value="${company.totalMoneyRaised}"/>==0){}
+  			else if(<c:out value="${company.totalMoneyRaised}"/><5000000){
+  				data.addRow(["<c:out value="${company.name}"/>", "Under $5 Million",<c:out value="${company.totalMoneyRaised}"/>,i]);}
+  			else if(<c:out value="${company.totalMoneyRaised}"/><20000000){
+  				data.addRow(["<c:out value="${company.name}"/>", "Under $20 Million",<c:out value="${company.totalMoneyRaised}"/>,i]); }
+  			else{data.addRow(["<c:out value="${company.name}"/>", "Companies",<c:out value="${company.totalMoneyRaised}"/>,i]);}
   		</c:forEach>
 
         // Create and draw the visualization.
@@ -33,6 +41,6 @@
     </script>
 
   <body>
-  	<div id="chart_div" style="width: 2000px; height: 1000px;"></div>
+  	<div id="chart_div" style="width: 1500px; height: 1000px;"></div>
   </body>
 </html>
