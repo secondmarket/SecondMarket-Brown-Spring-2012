@@ -11,10 +11,13 @@
         data.addColumn('string','Company');
         data.addColumn('string','Parent');
 		data.addColumn('number','Funding Recieved');
-		data.addRow(["Companies",null,0]);
-
+		data.addColumn('number', 'Market increase/decrease (color)');
+		data.addRow(["Companies",null,0,0]);
+		
+		var i=0;
     	<c:forEach items="${companies}" var="company">
-     		data.addRow(["<c:out value="${company.name}"/>", "Companies",<c:out value="${company.totalMoneyRaised}"/>]); 
+  			i++;
+     		data.addRow(["<c:out value="${company.name}"/>", "Companies",<c:out value="${company.totalMoneyRaised}"/>,i]); 
   		</c:forEach>
 
         // Create and draw the visualization.
@@ -30,6 +33,6 @@
     </script>
 
   <body>
-  	<div id="chart_div" style="width: 1500px; height: 1000px;"></div>
+  	<div id="chart_div" style="width: 2000px; height: 1000px;"></div>
   </body>
 </html>

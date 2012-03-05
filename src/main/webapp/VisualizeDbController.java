@@ -2,7 +2,6 @@ package webapp;
 
 import java.io.IOException;
 import java.util.List;
-import java.util.Iterator;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
@@ -25,7 +24,7 @@ public class VisualizeDbController implements Controller {
             throws ServletException, IOException {
 		List<Company> companies = _companyDao.find().asList();
 		
-		_logger.info("Returning list of " + companies.size() + " companies");
+		_logger.info("Returning Chart of  " + companies.size() + " companies");
 		
         return new ModelAndView("vis1", "companies", companies);
 	}
