@@ -27,17 +27,26 @@
   				data.addRow(["<c:out value="${company.name}"/>", "Under $20 Million",<c:out value="${company.totalMoneyRaised}"/>,i]); }
   			else{data.addRow(["<c:out value="${company.name}"/>", "Companies",<c:out value="${company.totalMoneyRaised}"/>,i]);}
   		</c:forEach>
-
+			
         // Create and draw the visualization.
         var tree = new google.visualization.TreeMap(document.getElementById('chart_div'));
+        
+        function selectHandler(e) {
+        	var selection = tree.getSelection()[0];
+			}
+        google.visualization.events.addListener(tree,'select',selectHandler);
+			
+			
         tree.draw(data, {
-          minColor: '#f00',
-          midColor: '#ddd',
-          maxColor: '#0d0',
+          minColor: '#188f28',
+          midColor: '#8f2818',
+          maxColor: '#29198f',
           headerHeight: 15,
           fontColor: 'black',
           showScale: true});
         }
+
+       
     </script>
 
   <body>
