@@ -36,7 +36,7 @@ public class CrunchBaseParser {
 	List<Company> getAllCompanies() throws JsonParseException, IOException {
 		return getCompanies(-1);
 	}
-	
+
 	List<Company> getCompanies(int bound) throws JsonParseException, IOException {
 		List<Company> companies = new ArrayList<Company>();
 		URL url = new URL("http://api.crunchbase.com/v/1/companies.js");
@@ -71,6 +71,39 @@ public class CrunchBaseParser {
 		
 	    LogFactory.getLog(getClass()).info("Parsed " + companies.size() + " companies");
 		return companies;		
+	}
+	
+	// Returns a list of permalinks for all companies in CrunchBase
+	List<String> getAllPermalinks() throws JsonParseException, IOException {
+		List<String> permalinks = new ArrayList<String>();
+		URL url = new URL("http://api.crunchbase.com/v/1/companies.js");
+		JsonFactory f = new JsonFactory();
+		JsonParser jp = f.createJsonParser(url);
+		JsonToken next = jp.nextToken();
+		assert(next == JsonToken.START_ARRAY);
+
+		int i = 0;
+		while ((next = jp.nextToken()) != JsonToken.END_ARRAY) {
+			assert(next == JsonToken.START_OBJECT);
+			
+			while (jp.nextToken() != JsonToken.END_OBJECT) {
+				String name = jp.getCurrentName();
+				next = jp.nextToken();
+				assert(next == JsonToken.VALUE_STRING);
+
+				if ("permalink".equals(name)) {
+					permalinks.add(jp.getText());
+				}
+			}
+			
+			++i;
+			if (i % 1000 == 0) {
+				System.out.println(i);
+			}
+		}
+		
+	    LogFactory.getLog(getClass()).info("Found " + permalinks.size() + " permalinks");
+		return permalinks;
 	}
 	
 	Company getCompany(String permalink) throws JsonParseException, JsonMappingException {

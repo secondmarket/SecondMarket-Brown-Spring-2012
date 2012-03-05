@@ -30,24 +30,34 @@ public class PopulateDbController implements Controller {
     public void saveCrunchbaseDataToDb() {
     	CrunchBaseParser p = new CrunchBaseParser();
     	try {
-    		// List<Company> companies = p.getAllCompanies();
-    		List<Company> companies = p.getCompanies(200);
-    		for (int i = 0; i < companies.size(); ++i) {
-    			_companyDao.save(companies.get(i));
+    		List<String> permalinks = p.getAllPermalinks();
+    		for (int i = 0; i < permalinks.size(); ++i) {
+    			String s = permalinks.get(i);
+    			Company c = _companyDao.findByPermalink(s);
+    			// if not in db, parse and save to db
+    			if (c == null) {
+    				c = p.getCompany(s);
+    				if (c != null) {
+    					_companyDao.save(c);
+    				}
+    			}
+    			if (i % 100 == 0) {
+    				System.out.println(i);
+    			}
     		}
     	} catch (JsonParseException e) {
     		_logger.error("Failed to save CrunchBase data to db: JsonParseException");
     		e.printStackTrace();
     	} catch (IOException e) {
     		_logger.error("Failed to save CrunchBase data to db: IOException");
-			e.printStackTrace();
+    		e.printStackTrace();	
 		}
     }
 
 	public ModelAndView handleRequest(HttpServletRequest arg0,
 			HttpServletResponse arg1) throws Exception {
 		// make sure database wasn't already populated
-		if (!_gettingData && _companyDao.count() == 0) {
+		if (!_gettingData) {
 			_gettingData = true;
 			saveCrunchbaseDataToDb();
 		}
@@ -55,5 +65,4 @@ public class PopulateDbController implements Controller {
 	}
     
     
-
 }
