@@ -18,8 +18,10 @@
 		
 		var i=0;
 		
+		var permalinks = {};
     	<c:forEach items="${companies}" var="company">
   			i++;
+			permalinks["<c:out value="${company.name}"/>"] = "<c:out value="${company.permalink}"/>";
   			if(<c:out value="${company.totalMoneyRaised}"/>==0){}
   			else if(<c:out value="${company.totalMoneyRaised}"/><5000000){
   				data.addRow(["<c:out value="${company.name}"/>", "Under $5 Million",<c:out value="${company.totalMoneyRaised}"/>,i]);}
@@ -33,9 +35,9 @@
         
         function selectHandler(e) {
         	var selection = tree.getSelection()[0];
-        	if(data.getValue(selection.row,0)!="Under $20 Million" & data.getValue(selection.row,0)!="Under $5 Million"){
-				window.location="/companies/"+data.getValue(selection.row,0).toLowerCase()+".htm"}
-			}
+        	var perma = permalinks[data.getValue(selection.row,0)];
+        	if(perma!=undefined){window.location="/companies/"+perma+".htm"}
+		}
         google.visualization.events.addListener(tree,'select',selectHandler);
 			
 			
