@@ -18,7 +18,7 @@ import org.codehaus.jackson.map.ObjectMapper;
 
 public class CrunchBaseParser {
 
-	private static final String[] EXCLUDED_FIELDS = { "deadpooled_year", "ipo", "acquistion" };
+	private static final String[] EXCLUDED_FIELDS = { "deadpooled_year", "ipo","acquisition" };
 	private ObjectMapper _mapper;
 	
 	public CrunchBaseParser() {
@@ -114,10 +114,16 @@ public class CrunchBaseParser {
 			Map<String, Object> data = _mapper.readValue(url.openStream(), Map.class);
 			
 			// Exclude companies that are dead, acquired, or public
+			
 			for (String s : EXCLUDED_FIELDS) {
+				System.out.println(s);
+				System.out.println(data.get(s));
 				if (data.get(s) != null) {
 					return null;
 				}
+			}
+			if(data.get("total_money_raised").equals("$0")){
+				return null;
 			}
 			
 			return _mapper.convertValue(data, Company.class);
