@@ -30,7 +30,7 @@ public class PopulateDbController implements Controller {
     public void saveCrunchbaseDataToDb() {
     	CrunchBaseParser p = new CrunchBaseParser();
     	try {
-    		/*List<String> permalinks = p.getAllPermalinks();
+    		List<String> permalinks = p.getAllPermalinks();
     		for (int i = 0; i < permalinks.size(); ++i) {
     			String s = permalinks.get(i);
     			Company c = _companyDao.findByPermalink(s);
@@ -43,12 +43,6 @@ public class PopulateDbController implements Controller {
     			}
     			if (i % 100 == 0) {
     				System.out.println(i);
-    			}*/
-    		Company c = _companyDao.findByPermalink("postini");
-    		if(c==null){
-    			c=p.getCompany("postini");
-    			if(c!=null){
-    				_companyDao.save(c);
     			}
     		}
     	} catch (JsonParseException e) {
