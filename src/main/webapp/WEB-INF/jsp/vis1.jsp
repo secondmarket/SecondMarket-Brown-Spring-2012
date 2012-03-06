@@ -33,7 +33,8 @@
         
         function selectHandler(e) {
         	var selection = tree.getSelection()[0];
-			window.location="/companies/"+data.getValue(selection.row,0).toLowerCase()+".htm"
+        	if(data.getValue(selection.row,0)!="Under $20 Million" & data.getValue(selection.row,0)!="Under $5 Million"){
+				window.location="/companies/"+data.getValue(selection.row,0).toLowerCase()+".htm"}
 			}
         google.visualization.events.addListener(tree,'select',selectHandler);
 			
