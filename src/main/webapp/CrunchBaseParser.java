@@ -116,8 +116,6 @@ public class CrunchBaseParser {
 			// Exclude companies that are dead, acquired, or public
 			
 			for (String s : EXCLUDED_FIELDS) {
-				System.out.println(s);
-				System.out.println(data.get(s));
 				if (data.get(s) != null) {
 					return null;
 				}
