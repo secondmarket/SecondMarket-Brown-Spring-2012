@@ -26,9 +26,9 @@ public class VisualizeDbController implements Controller {
 		List<Company> companies = _companyDao.find().asList();
 		int limit = 500;
 		if(companies.size()>limit){
-			Collections.sort(companies,new CompanyComparator());
+			Collections.sort(companies,new LimitedMoneyCompanyComparator(5));
 			Collections.reverse(companies);
-			companies = companies.subList(0,500);
+			companies = companies.subList(0,100);
 		}
 		
 		_logger.info("Returning Chart of  " + companies.size() + " companies");

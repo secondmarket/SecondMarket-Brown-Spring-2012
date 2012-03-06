@@ -16,20 +16,26 @@
 		data.addRow(["Under $20 Million","Companies",0,0]);
 		data.addRow(["Under $5 Million","Under $20 Million",0,0]);
 		
+		var curryear = new Date().getFullYear();
+		var yearlimit = 5;
 		var i=0;
-		
 		var permalinks = {};
-    	<c:forEach items="${companies}" var="company">
-  			i++;
+		<c:forEach items="${companies}" var="company">
+			i++;
+			var money=0.0;
 			permalinks["<c:out value="${company.name}"/>"] = "<c:out value="${company.permalink}"/>";
-  			if(<c:out value="${company.totalMoneyRaised}"/>==0){}
-  			else if(<c:out value="${company.totalMoneyRaised}"/><5000000){
-  				data.addRow(["<c:out value="${company.name}"/>", "Under $5 Million",<c:out value="${company.totalMoneyRaised}"/>,i]);}
-  			else if(<c:out value="${company.totalMoneyRaised}"/><20000000){
-  				data.addRow(["<c:out value="${company.name}"/>", "Under $20 Million",<c:out value="${company.totalMoneyRaised}"/>,i]); }
-  			else{data.addRow(["<c:out value="${company.name}"/>", "Companies",<c:out value="${company.totalMoneyRaised}"/>,i]);}
-  		</c:forEach>
+			var name="<c:out value="${company.name}"/>";
+			<c:forEach items="${company.fundingRounds}" var="round">
+				var funyear = <c:out value="${round.year}"/>;
+				if((curryear-funyear)<5 && (curryear-funyear)>0){
+					money = money+<c:out value="${round.raisedAmount}"/>;
+				}
+			</c:forEach>
 			
+			if(money<5000000){data.addRow([name, "Under $5 Million",money,i]);}
+			else if(money<20000000){data.addRow([name, "Under $20 Million",money,i]);}
+			else{data.addRow([name, "Companies",money,i]);}
+		</c:forEach>			
         // Create and draw the visualization.
         var tree = new google.visualization.TreeMap(document.getElementById('chart_div'));
         
