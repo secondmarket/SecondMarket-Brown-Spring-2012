@@ -11,6 +11,14 @@
 	   	<constructor-arg value="CompanyDb" index="2" />
 	   </bean>
 	   
+	   <bean class="webapp.FinancialOrgDAO" id="financialOrgDao">
+	   	<constructor-arg ref="morphia" index="0" />
+	   	<constructor-arg ref="mongo" index="1" />
+	   	<constructor-arg value="CompanyDb" index="2" />
+	   </bean>
+	   
+	   
+	   
 	   <bean name="/hello.htm" class="webapp.HelloController">
 	   </bean>
 	   
@@ -24,6 +32,11 @@
 	   
 	   <bean name="/populate_db.htm" class="webapp.PopulateDbController">
 	   	<constructor-arg ref="companyDao" />
+	   </bean>
+	   
+	   <bean name="/populate_financial.htm" class="webapp.PopulateFinancialController">
+	   	<constructor-arg ref="financialOrgDao" index="0" />
+	   	<constructor-arg ref="companyDao" index="1" />
 	   </bean>
 	   
 	   <bean name="/vis1.htm" class="webapp.VisualizeDbController">
