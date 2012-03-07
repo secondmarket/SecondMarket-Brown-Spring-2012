@@ -13,6 +13,8 @@
 		data.addColumn('number','Investments Made');
 		data.addColumn('number', 'Market increase/decrease (color)');
 		data.addRow(["Financial Organizations",null,0,0]);
+		data.addRow(["Under $500 Million","Financial Organizations",0,0]);
+		data.addRow(["Under $100 Million","Under $500 Million",0,0]);
 		
 		var curryear = new Date().getFullYear();
 		var yearlimit = 5;
@@ -28,18 +30,13 @@
 				}
 			</c:forEach>
 			
-			data.addRow([name, "Financial Organizations",money,i]);
+			if(money<100000000){data.addRow([name, "Under $100 Million",money,i]);}
+			else if(money<500000000){data.addRow([name, "Under $500 Million",money,i]);}
+			else{data.addRow([name, "Financial Organizations",money,i]);}
 		</c:forEach>			
         // Create and draw the visualization.
         var tree = new google.visualization.TreeMap(document.getElementById('chart_div'));
         
-        function selectHandler(e) {
-        	var selection = tree.getSelection()[0];
-        	var perma = permalinks[data.getValue(selection.row,0)];
-        	if(perma!=undefined){window.location="/companies/"+perma+".htm"}
-		}
-        google.visualization.events.addListener(tree,'select',selectHandler);
-			
 			
         tree.draw(data, {
           minColor: '#188f28',

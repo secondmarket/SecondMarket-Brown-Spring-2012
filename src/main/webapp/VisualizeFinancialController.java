@@ -26,8 +26,8 @@ public class VisualizeFinancialController implements Controller {
 		List<FinancialOrg> financialorgs = _financialDao.find().asList();
 		int limit = 500;
 		if(financialorgs.size()>limit){
-			//Collections.sort(companies,new LimitedMoneyCompanyComparator(5));
-			//Collections.reverse(companies);
+			Collections.sort(financialorgs,new LimitedMoneyFinancialComparator(5));
+			Collections.reverse(financialorgs);
 			financialorgs = financialorgs.subList(0,500);
 		}
 		

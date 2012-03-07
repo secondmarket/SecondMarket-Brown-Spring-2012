@@ -13,8 +13,8 @@
 		data.addColumn('number','Funding Recieved');
 		data.addColumn('number', 'Market increase/decrease (color)');
 		data.addRow(["Companies",null,0,0]);
-		data.addRow(["Under $20 Million","Companies",0,0]);
-		data.addRow(["Under $5 Million","Under $20 Million",0,0]);
+		data.addRow(["Under $300 Million","Companies",0,0]);
+		data.addRow(["Under $100 Million","Under $300 Million",0,0]);
 		
 		var curryear = new Date().getFullYear();
 		var yearlimit = 5;
@@ -32,8 +32,8 @@
 				}
 			</c:forEach>
 			
-			if(money<5000000){data.addRow([name, "Under $5 Million",money,i]);}
-			else if(money<20000000){data.addRow([name, "Under $20 Million",money,i]);}
+			if(money<100000000){data.addRow([name, "Under $100 Million",money,i]);}
+			else if(money<300000000){data.addRow([name, "Under $300 Million",money,i]);}
 			else{data.addRow([name, "Companies",money,i]);}
 		</c:forEach>			
         // Create and draw the visualization.
