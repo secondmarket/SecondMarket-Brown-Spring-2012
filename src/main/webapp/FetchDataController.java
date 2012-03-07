@@ -29,7 +29,7 @@ public class FetchDataController implements Controller {
 		if(companies.size()>limit){
 			Collections.sort(companies,new LimitedMoneyCompanyComparator(5));
 			Collections.reverse(companies);
-			companies = companies.subList(0,100);
+			companies = companies.subList(0,500);
 		}
 		
 		_logger.info("Returning list of " + companies.size() + " companies");
