@@ -13,6 +13,10 @@ import org.apache.commons.logging.LogFactory;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.Controller;
 
+/**
+ * Fetches a list of the top n companies by money raised
+ *
+ */
 public class FetchDataController implements Controller {
 
     protected final Log _logger = LogFactory.getLog(getClass());

@@ -10,7 +10,5 @@ public class HelloControllerTest extends TestCase {
         HelloController controller = new HelloController();
         ModelAndView modelAndView = controller.handleRequest(null, null);		
         assertEquals("hello", modelAndView.getViewName());
-        String nowValue = (String) modelAndView.getModel().get("now");
-        assertNotNull(nowValue);
     }
 }

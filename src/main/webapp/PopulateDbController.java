@@ -6,8 +6,9 @@ import java.io.File;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
-import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -34,8 +35,8 @@ public class PopulateDbController implements Controller {
     	_excludedCompaniesFile = new File("src/main/webapp/excluded-companies.txt");
     }
     
-    public List<String> getExcludedCompanies(File file) throws IOException {
-    	List<String> excluded = new ArrayList<String>();
+    public Set<String> getExcludedCompanies(File file) throws IOException {
+    	Set<String> excluded = new HashSet<String>();
     	BufferedReader reader = new BufferedReader(new FileReader(file));
     	String nextLine;
     	while ((nextLine = reader.readLine()) != null) {
@@ -55,11 +56,11 @@ public class PopulateDbController implements Controller {
 	
     // Parse data using the CrunchBase API and save it to the DB
     public void saveCrunchbaseDataToDb() {
-    	List<String> excludedCompanies;
+    	Set<String> excludedCompanies;
     	try {
 			excludedCompanies = getExcludedCompanies(_excludedCompaniesFile);
 		} catch (IOException e1) {
-			excludedCompanies = new ArrayList<String>();
+			excludedCompanies = new HashSet<String>();
 		}
     	
     	CrunchBaseParser p = new CrunchBaseParser();

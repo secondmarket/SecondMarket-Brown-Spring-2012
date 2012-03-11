@@ -17,7 +17,7 @@ import com.google.code.morphia.annotations.Indexed;
 public class Company {
 	@Id ObjectId _id;
 	private String _name, _homepageUrl, _blogUrl;
-	@Indexed
+	@Indexed(unique=true, dropDups=true)
 	private String _permalink;
 	private int _numEmployees;
 	private String _overview;

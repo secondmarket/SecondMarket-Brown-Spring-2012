@@ -11,6 +11,13 @@ import org.codehaus.jackson.map.ObjectMapper;
 
 public class CrunchBaseTest extends TestCase {
 
+	private File _file;
+
+	@Override
+	protected void setUp() {
+		_file = new File("company_test.json");
+	}
+	
 	public void testSerialization() {
 		CrunchBaseParser p = new CrunchBaseParser();
 		List<Company> companies = null;
@@ -30,7 +37,7 @@ public class CrunchBaseTest extends TestCase {
 		ObjectMapper mapper = new ObjectMapper();
 		Company company = new Company();
 		try {
-			mapper.writeValue(new File("company_test.json"), company);
+			mapper.writeValue(_file, company);
 		} catch (JsonGenerationException e) {
 			assertFalse(true);
 		} catch (JsonMappingException e) {
@@ -55,10 +62,13 @@ public class CrunchBaseTest extends TestCase {
 		assertEquals(companies.size(), 1);
 		Company c = companies.get(0);
 		assertNotNull(c.getName());
-
+		assertNotNull(c.getPermalink());
+		 // should be excluded if no money raised
+		assertTrue(c.getTotalMoneyRaised() != 0);
+		
 		ObjectMapper mapper = new ObjectMapper();
 		try {
-			mapper.writeValue(new File("company_test.json"), c);
+			mapper.writeValue(_file, c);
 		} catch (Exception e) {
 			assertFalse(true);
 		}
@@ -66,6 +76,6 @@ public class CrunchBaseTest extends TestCase {
 	
 	@Override
 	protected void tearDown() {
-		// delete the file
+		_file.delete();
 	}
 }

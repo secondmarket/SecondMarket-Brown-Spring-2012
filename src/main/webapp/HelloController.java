@@ -19,7 +19,6 @@ public class HelloController implements Controller {
             throws ServletException, IOException {
     			
         _logger.info("Returning hello view");
-        String now = "Blah";
-        return new ModelAndView("hello", "now", now);
+        return new ModelAndView("hello");
     }
 }

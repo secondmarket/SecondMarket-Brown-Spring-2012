@@ -1,7 +1,5 @@
 package webapp;
 
-import java.util.List;
-
 import org.bson.types.ObjectId;
 
 import com.google.code.morphia.Morphia;
