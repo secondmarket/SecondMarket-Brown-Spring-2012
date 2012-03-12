@@ -1,6 +1,13 @@
 <%@ include file="/WEB-INF/jsp/include.jsp" %>
 <html>
-  <head><title>Visualization 2</title></head>
+  <head>
+    <link rel="stylesheet" href="/css/blueprint/screen.css" type="text/css" media="screen, projection">
+	<link rel="stylesheet" href="/css/blueprint/print.css" type="text/css" media="print">
+	<!--[if lt IE 8]>
+  	<link rel="stylesheet" href="/css/blueprint/ie.css" type="text/css" media="screen, projection">
+	<![endif]-->
+    <title>Visualization 2</title>
+  </head>
     <script type="text/javascript" src="https://www.google.com/jsapi"></script>
     <script type="text/javascript">
       google.load("visualization", "1", {packages:["treemap"]});

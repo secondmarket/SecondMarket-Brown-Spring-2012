@@ -1,7 +1,14 @@
 <%@ include file="/WEB-INF/jsp/include.jsp" %>
 
 <html>
-  <head><title>Hello Brown!</title></head>
+  <head>
+    <link rel="stylesheet" href="/css/blueprint/screen.css" type="text/css" media="screen, projection">
+	<link rel="stylesheet" href="/css/blueprint/print.css" type="text/css" media="print">
+	<!--[if lt IE 8]>
+  	<link rel="stylesheet" href="/css/blueprint/ie.css" type="text/css" media="screen, projection">
+	<![endif]-->
+    <title>Hello Brown!</title>
+  </head>
   <body>
     <h1>Hello Brown!!</h1>
     <a href="populate_db.htm">Populate List</a><br/>
