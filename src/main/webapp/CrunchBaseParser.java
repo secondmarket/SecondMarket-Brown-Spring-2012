@@ -27,6 +27,7 @@ public class CrunchBaseParser {
                  new SimpleDateFormat("EEE MMM dd hh:mm:ss zzz yyyy"));
 		_mapper.getDeserializationConfig().addMixInAnnotations(Company.class, CompanyMixIn.class);
 		_mapper.getDeserializationConfig().addMixInAnnotations(FundingRound.class, FundingRoundMixIn.class);
+		_mapper.getDeserializationConfig().addMixInAnnotations(Office.class, OfficeMixIn.class);
 		_mapper.configure(Feature.FAIL_ON_UNKNOWN_PROPERTIES, false);
 		_mapper.configure(Feature.AUTO_DETECT_SETTERS, false);
 		_mapper.configure(Feature.AUTO_DETECT_CREATORS, false);
