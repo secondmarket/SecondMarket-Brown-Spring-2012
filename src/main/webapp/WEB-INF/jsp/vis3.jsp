@@ -35,7 +35,6 @@
 		
 		var first = false;
 		<c:forEach items="${company.offices}" var="office">
-		alert("<c:out value="${office.city}"/>");
 			if(!first){
 				first = true;
 				var city = "<c:out value="${office.city}"/>";
@@ -52,8 +51,9 @@
 		}
 	  </c:forEach>
 	  
-	  alert(dump(totalmoney));
-	  alert(dump(count));
+	  for(var key in totalmoney){
+	  		data.addRow([key,totalmoney[key],count[key]]);
+	  }
 		
       var options = {
         region: 'US',
