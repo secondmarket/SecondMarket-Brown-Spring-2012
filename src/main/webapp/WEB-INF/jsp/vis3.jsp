@@ -38,16 +38,26 @@
 			if(!first){
 				first = true;
 				var city = "<c:out value="${office.city}"/>";
+				var state =  "<c:out value="${office.state}"/>";
+				var country = "<c:out value="${office.country}"/>";
 			}
 		</c:forEach>
 		
-		if(totalmoney[city]!=null){
-			totalmoney[city] = totalmoney[city] + money;
-			count[city] = count[city] + 1;
+		if(state!="" && city!=""){
+			city = city + " " + state;
 		}
-		else{
-			totalmoney[city] = money;
-			count[city] = 1;
+		
+		if(country=="USA"){
+			if(city!=""){
+				if(totalmoney[city]!=null){
+					totalmoney[city] = totalmoney[city] + money;
+					count[city] = count[city] + 1;
+				}
+				else{
+					totalmoney[city] = money;
+					count[city] = 1;
+				}
+			}
 		}
 	  </c:forEach>
 	  
