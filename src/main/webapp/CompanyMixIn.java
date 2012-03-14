@@ -20,6 +20,8 @@ public abstract class CompanyMixIn extends Company {
 	@JsonProperty("total_money_raised") public abstract double getTotalMoneyRaised();
 	@JsonProperty("funding_rounds") public abstract List<FundingRound> getFundingRounds();
 	@JsonProperty("image") public abstract String getImageUrl();
+	@JsonProperty("category_code") public abstract String getIndustry();
+	@JsonProperty("offices") public abstract List<Office> getOffices();
 	
 	@JsonProperty("name") protected abstract void setName(String name);
 	@JsonProperty("permalink") protected abstract void setPermalink(String permalink);
@@ -30,4 +32,6 @@ public abstract class CompanyMixIn extends Company {
 	@JsonProperty("total_money_raised") protected abstract void setTotalMoneyRaised(String totalMoney);
 	@JsonProperty("funding_rounds") protected abstract void setFundingRounds(List<FundingRound> rounds);
 	@JsonProperty("image") protected abstract void setImageUrl(Map<String, List<List<Object>>> availableUrls);
+	@JsonProperty("category_code") protected abstract void setIndustry(String industry);
+	@JsonProperty("offices") protected abstract void setOffices(List<Office> offices);
 }

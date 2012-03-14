@@ -23,9 +23,12 @@ public class Company {
 	private String _overview;
 	private String _imageUrl;
 	private double _totalMoneyRaised;
+	private String _industry;
 	
 	@Embedded
 	private List<FundingRound> _fundingRounds;
+	@Embedded
+	private List<Office> _offices;
 
 	public Company() {
 		_id = new ObjectId();
@@ -90,6 +93,12 @@ public class Company {
 		_totalMoneyRaised = Double.parseDouble(sb.toString()) * mult;
 	}
 	
+	public String getIndustry() { return _industry; }
+	protected void setIndustry(String industry) { _industry = industry; }
+	
 	public List<FundingRound> getFundingRounds() { return _fundingRounds; }
 	protected void setFundingRounds(List<FundingRound> rounds) { _fundingRounds = rounds; }
+	
+	public List<Office> getOffices() {return _offices;}
+	protected void setOffices(List<Office> offices) { _offices = offices;}
 }
