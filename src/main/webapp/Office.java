@@ -1,11 +1,10 @@
 package webapp;
 
-import java.util.Map;
 
 import com.google.code.morphia.annotations.Embedded;
 
 /*
- * Holds data for a single funding round
+ * Holds data for a single Office
  */
 @Embedded
 public class Office {
@@ -14,7 +13,6 @@ public class Office {
 	private double _latitude, _longitude;
 
 	public Office() {
-		
 	}
 	
 	public String getZip() { return _zip; }

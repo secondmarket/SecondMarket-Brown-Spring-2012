@@ -47,6 +47,10 @@
 	   	<constructor-arg ref="financialOrgDao" />
 	   </bean>
 	   
+	   <bean name="/vis3.htm" class="webapp.VisualizeMapController">
+	   	<constructor-arg ref="companyDao" />
+	   </bean>
+	   
 	   
 	   <bean id="viewResolver" class="org.springframework.web.servlet.view.InternalResourceViewResolver">
 	   	<property name="viewClass" value="org.springframework.web.servlet.view.JstlView"></property>
