@@ -47,8 +47,7 @@
 			city = city + " " + state;
 		}
 		
-		if(country=="USA"){
-			if(city!=""){
+		if(country=="USA" && city!="" && money>0){
 				if(totalmoney[city]!=null){
 					totalmoney[city] = totalmoney[city] + money;
 					count[city] = count[city] + 1;
@@ -57,7 +56,6 @@
 					totalmoney[city] = money;
 					count[city] = 1;
 				}
-			}
 		}
 	  </c:forEach>
 	  
