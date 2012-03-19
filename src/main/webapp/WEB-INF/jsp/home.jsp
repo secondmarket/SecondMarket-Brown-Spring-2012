@@ -75,7 +75,7 @@
 	<div class="container">
 	    <div class="span-24" id="header">
 	    	<ul id="menu">
-				<li><a href="home.htm">Home</a></li>
+				<li><a href="/home.htm">Home</a></li>
 				<li><a href="#" class="drop">Industry</a>
 					<div class="dropdown_3columns">
 						<div class="col_1">
