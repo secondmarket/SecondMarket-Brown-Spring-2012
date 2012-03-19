@@ -114,8 +114,22 @@
 				<li><a href="#" class="drop">Location</a>
 					<div class="dropdown_3columns">
 						<div class="col_1">
+							<ul>
+								<li><a href="?san%20francisco">San Francisco</a></li>
+								<li><a href="?new%20york">New York</a></li>
+								<li><a href="?london">London</a></li>
+								<li><a href="?cambridge">Cambridge</a></li>
+								<li><a href="?palo%20alto">Palo Alto</a></li>
+								<li><a href="?mountain%20view">Mountain View</a></li>
+								<li><a href="?boston">Boston</a></li>
+							</ul>
 						</div>
 						<div class="col_1">
+							<ul>
+								<li><a href="?seattle">Seattle</a></li>
+								<li><a href="?chicago">Chicago</a></li>
+								<li><a href="?austin">Austin</a></li>
+							</ul>
 						</div>
 						<div class="col_1">
 						</div>
