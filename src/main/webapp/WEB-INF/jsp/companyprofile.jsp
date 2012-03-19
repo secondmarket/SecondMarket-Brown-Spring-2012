@@ -7,7 +7,6 @@
 	<!--[if lt IE 8]>
   	<link rel="stylesheet" href="/css/blueprint/ie.css" type="text/css" media="screen, projection">
 	<![endif]-->
-	<link rel="stylesheet" href="/css/style.css" type="text/css">
     <title><c:out value="${company.name}" /></title>
   </head>
   <body>

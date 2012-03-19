@@ -33,7 +33,7 @@ public class VisualizeDbController implements Controller {
 		
 		_logger.info("Returning Chart of  " + companies.size() + " companies");
 		
-        return new ModelAndView("vis1", "companies", companies);
+        return new ModelAndView("home", "companies", companies);
 	}
 
 }

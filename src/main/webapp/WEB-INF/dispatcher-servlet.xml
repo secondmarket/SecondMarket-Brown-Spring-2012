@@ -17,11 +17,6 @@
 	   	<constructor-arg value="CompanyDb" index="2" />
 	   </bean>
 	   
-	   
-	   
-	   <bean name="/hello.htm" class="webapp.HelloController">
-	   </bean>
-	   
 	   <bean name="/list.htm" class="webapp.FetchDataController">
 	   	<constructor-arg ref="companyDao" />
 	   </bean>
@@ -39,7 +34,7 @@
 	   	<constructor-arg ref="companyDao" index="1" />
 	   </bean>
 	   
-	   <bean name="/vis1.htm" class="webapp.VisualizeDbController">
+	   <bean name="/home.htm" class="webapp.VisualizeDbController">
 	   	<constructor-arg ref="companyDao" />
 	   </bean>
 	   
@@ -50,6 +45,10 @@
 	   <bean name="/vis3.htm" class="webapp.VisualizeMapController">
 	   	<constructor-arg ref="companyDao" />
 	   </bean>
+	   
+	   <bean name="/*.htm" class="webapp.BasicPageController">
+	   </bean>
+	  
 	   
 	   
 	   <bean id="viewResolver" class="org.springframework.web.servlet.view.InternalResourceViewResolver">
