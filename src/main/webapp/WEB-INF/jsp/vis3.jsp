@@ -33,15 +33,14 @@
 			}
 		</c:forEach>
 		
-		var first = false;
-		<c:forEach items="${company.offices}" var="office">
-			if(!first){
-				first = true;
-				var city = "<c:out value="${office.city}"/>";
-				var state =  "<c:out value="${office.state}"/>";
-				var country = "<c:out value="${office.country}"/>";
-			}
-		</c:forEach>
+		var city = "";
+		var state = "";
+		var country = "";
+		<c:if test="${!empty company.offices}">
+			city = "<c:out value="${company.offices[0].city}" />";
+			state = "<c:out value="${company.offices[0].state}" />";
+			country = "<c:out value="${company.offices[0].country}" />";
+		</c:if>
 		
 		if(state!="" && city!=""){
 			city = city + " " + state;
