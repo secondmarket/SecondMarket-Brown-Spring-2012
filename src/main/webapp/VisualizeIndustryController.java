@@ -23,7 +23,7 @@ public class VisualizeIndustryController implements Controller {
 	public ModelAndView handleRequest(HttpServletRequest request,
 			HttpServletResponse response) throws Exception {
 		String industry = request.getServletPath().substring("/industry/".length());
-		industry = industry.substring(0, industry.indexOf('.'));
+		industry = industry.substring(0, industry.indexOf('.')).toLowerCase();
 		
 		String location = request.getQueryString();
 		System.out.println(location);
@@ -33,11 +33,9 @@ public class VisualizeIndustryController implements Controller {
 			location = beg + " " + end;
 		}
 		System.out.println(location);
-		
-		industry = industry.substring(0, industry.indexOf('.')).toLowerCase();
 
 		int limit = 500;
-		List<Company> companies = _companyDao.findByIndustry(industry).limit(limit).asList();
+		List<Company> companies = _companyDao.findByIndustryAndLocation(industry,location).limit(limit).asList();
 		Collections.sort(companies,new LimitedMoneyCompanyComparator(5));
 		Collections.reverse(companies);
 
