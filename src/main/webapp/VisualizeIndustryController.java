@@ -2,7 +2,6 @@ package webapp;
 
 import java.util.Collections;
 import java.util.List;
-import java.util.ArrayList;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -34,42 +33,16 @@ public class VisualizeIndustryController implements Controller {
 			location = beg + " " + end;
 		}
 		System.out.println(location);
-		List<Company> companies = _companyDao.find().asList();
+		
+		industry = industry.substring(0, industry.indexOf('.')).toLowerCase();
+
 		int limit = 500;
+		List<Company> companies = _companyDao.findByIndustry(industry).limit(limit).asList();
 		Collections.sort(companies,new LimitedMoneyCompanyComparator(5));
 		Collections.reverse(companies);
-		List<Company> industrycompanies = new ArrayList<Company>();
-		int counter=0;
-		
-		
-		if(location==null){
-			for(Company c : companies){
-				if(c.getIndustry()!=null && c.getIndustry().equalsIgnoreCase(industry)){
-					industrycompanies.add(c);
-					counter++;
-				}
-				if(counter>=limit){
-					break;
-				}
-			}
-		}
-		else{
-			for(Company c : companies){
-				if(c.getIndustry()!=null && c.getIndustry().equalsIgnoreCase(industry)){
-					if(c.getOffices()!=null && c.getOffices().get(0)!=null && c.getOffices().get(0).getCity()!=null){
-						if(c.getOffices().get(0).getCity().equalsIgnoreCase(location)){
-							industrycompanies.add(c);
-							counter++;
-						}
-					}
-				}
-				if(counter>=limit){
-					break;
-				}
-			}	
-		}
+
 		_logger.info("Returning visualization for " + industry);
-        return new ModelAndView("industryvis", "industrycompanies", industrycompanies);
+        return new ModelAndView("industryvis", "industrycompanies", companies);
 	}
 
 }
