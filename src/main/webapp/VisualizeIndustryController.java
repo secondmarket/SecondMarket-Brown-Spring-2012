@@ -37,12 +37,12 @@ public class VisualizeIndustryController implements Controller {
 		List<Company> companies;
 		int limit = 500;
 		if(location!=null){
-			companies = _companyDao.findByIndustryAndLocation(industry,location).limit(limit).asList();
+			companies = _companyDao.findByIndustryAndLocation(industry,location).order("-_totalMoneyRaised").limit(limit).asList();
 			Collections.sort(companies,new LimitedMoneyCompanyComparator(5));
 			Collections.reverse(companies);
 		}
 		else{
-			companies = _companyDao.findByIndustry(industry).limit(limit).asList();
+			companies = _companyDao.findByIndustry(industry).order("-_totalMoneyRaised").limit(limit).asList();
 			Collections.sort(companies,new LimitedMoneyCompanyComparator(5));
 			Collections.reverse(companies);
 		}
