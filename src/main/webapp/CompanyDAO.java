@@ -1,11 +1,10 @@
 package webapp;
 
-import java.util.List;
-
 import org.bson.types.ObjectId;
 
 import com.google.code.morphia.Morphia;
 import com.google.code.morphia.dao.BasicDAO;
+import com.google.code.morphia.query.Query;
 import com.mongodb.Mongo;
 
 /*
@@ -16,39 +15,38 @@ public class CompanyDAO extends BasicDAO<Company, ObjectId> {
 		super(mongo, morphia, dbName);
 	}
 	
-	public List<Company> findByName(String name) {
-		return ds.find(entityClazz).field("_name").equal(name).asList();
-	}
-	
 	// permalinks are unique, so only return one
 	public Company findByPermalink(String permalink) {
 		return ds.find(entityClazz).field("_permalink").equal(permalink).get();
 	}
 	
-	public List<Company> findByIndustry(String industry) {
-		return ds.find(entityClazz).field("_industry").equal(industry).asList();
+	public Query<Company> findByName(String name) {
+		return ds.find(entityClazz).field("_name").equal(name);
+	}
+	
+	public Query<Company> findByIndustry(String industry) {
+		return ds.find(entityClazz).field("_industry").equal(industry);
 	}
 	
 	// location queries use the first Office by default
-	public List<Company> findByLocation(String city) {
-		return ds.find(entityClazz).disableValidation().field("_offices.0._city").equal(city).asList();		
+	public Query<Company> findByLocation(String city) {
+		return ds.find(entityClazz).disableValidation().field("_offices.0._city").equal(city);		
 	}
 	
-	public List<Company> findByLocation(String city, String state) {
+	public Query<Company> findByLocation(String city, String state) {
 		return ds.find(entityClazz).disableValidation().field("_offices.0._city").equal(city).
-				 field("_offices.0._state").equal(state).asList();
+				 field("_offices.0._state").equal(state);
 	}
 
 	// use these to sort by industry and city, they'll be faster than 
 	// combining findByLocation() and findByIndustry()
-	public List<Company> findByIndustryAndLocation(String industry, String city) {
+	public Query<Company> findByIndustryAndLocation(String industry, String city) {
 		return ds.find(entityClazz).disableValidation().field("_offices.0._city").equal(city).
-				field("_industry").equal(industry).asList();
+				field("_industry").equal(industry);
 	}
 	
-	public List<Company> findByIndustryAndLocation(String industry, String city, String state) {
+	public Query<Company> findByIndustryAndLocation(String industry, String city, String state) {
 		return ds.find(entityClazz).disableValidation().field("_offices.0._city").equal(city).
-				 field("_offices.0._state").equal(state).field("_industry").equal(industry).
-				 asList();		
+				 field("_offices.0._state").equal(state).field("_industry").equal(industry);		
 	}
 }
