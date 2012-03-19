@@ -13,8 +13,14 @@
 
 	<script type="text/javascript" src="https://www.google.com/jsapi"></script>
     <script type="text/javascript">
-      google.load("visualization", "1", {packages:["treemap"]});
-      google.setOnLoadCallback(drawChart);
+      google.load("visualization", "1", {packages:["treemap", "geochart"]});
+      google.setOnLoadCallback(drawAll);
+      
+      function drawAll() {
+     	drawChart();
+     	drawMarkersMap();
+      }
+      
       function drawChart() {
         // Create and populate the data table.
         var data = new google.visualization.DataTable();
@@ -64,8 +70,66 @@
           headerHeight: 0,
           fontColor: 'black',
           showScale: false});
-        }
+      }
+      
+      function drawMarkersMap() {
+      var data = new google.visualization.DataTable();
+      data.addColumn('string', 'City');
+      data.addColumn('number', 'Money Raised');
+      data.addColumn('number', 'Number Of Companies');
+      
+      var totalmoney = {};
+      var count = {};
+  	  var curryear = new Date().getFullYear();    
+  	  
+      <c:forEach items="${industrycompanies}" var="company">
+		var money=0.0;
+		
+		<c:forEach items="${company.fundingRounds}" var="round">
+			var funyear = <c:out value="${round.year}"/>;
+			if((curryear-funyear)<5 && (curryear-funyear)>0){
+				money = money+<c:out value="${round.raisedAmount}"/>;
+			}
+		</c:forEach>
+		
+		var city = "";
+		var state = "";
+		var country = "";
+		<c:if test="${!empty company.offices}">
+			city = "<c:out value="${company.offices[0].city}" />";
+			state = "<c:out value="${company.offices[0].state}" />";
+			country = "<c:out value="${company.offices[0].country}" />";
+		</c:if>
+		
+		if(state!="" && city!=""){
+			city = city + " " + state;
+		}
+		
+		if(country=="USA" && city!="" && money>0){
+				if(totalmoney[city]!=null){
+					totalmoney[city] = totalmoney[city] + money;
+					count[city] = count[city] + 1;
+				}
+				else{
+					totalmoney[city] = money;
+					count[city] = 1;
+				}
+		}
+	  </c:forEach>
+	  
+	  for(var key in totalmoney){
+	  		data.addRow([key,totalmoney[key],count[key]]);
+	  }
+		
+      var options = {
+        region: 'US',
+        displayMode: 'markers',
+        colorAxis: {colors: ['green', 'blue']}
+      };
 
+      var chart = new google.visualization.GeoChart(document.getElementById('map_div'));
+      chart.draw(data, options);
+    };
        
     </script>
   </head>
@@ -141,9 +205,10 @@
 		<div class="span-22 append-1 prepend-1" id="main_content">
 			<div class="span-22 content_box">
 				<h3>Top 500 Companies by Funding<h3>
-				<h4>Location:USA</h4>
-				<h4>Industry:All</h4>
+				<h4>Location: USA</h4>
+				<h4>Industry: All</h4>
 				<div id="chart_div" style="width:880px; height: 500px;"></div>
+				<div id="map_div" style="width:880px; height: 500px;"></div>
 			</div>
 		</div>
 		<div class="span-24" id="footer">
