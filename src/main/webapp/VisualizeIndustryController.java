@@ -27,17 +27,25 @@ public class VisualizeIndustryController implements Controller {
 		
 		String location = request.getQueryString();
 		System.out.println(location);
-		if(location.contains("%20")){
+		if(location!=null && location.contains("%20")){
 			String beg = location.substring(0,location.indexOf("%20"));
 			String end = location.substring(location.indexOf("%20")+"%20".length());
 			location = beg + " " + end;
 		}
 		System.out.println(location);
-
+		
+		List<Company> companies;
 		int limit = 500;
-		List<Company> companies = _companyDao.findByIndustryAndLocation(industry,location).limit(limit).asList();
-		Collections.sort(companies,new LimitedMoneyCompanyComparator(5));
-		Collections.reverse(companies);
+		if(location!=null){
+			companies = _companyDao.findByIndustryAndLocation(industry,location).limit(limit).asList();
+			Collections.sort(companies,new LimitedMoneyCompanyComparator(5));
+			Collections.reverse(companies);
+		}
+		else{
+			companies = _companyDao.findByIndustry(industry).limit(limit).asList();
+			Collections.sort(companies,new LimitedMoneyCompanyComparator(5));
+			Collections.reverse(companies);
+		}
 
 		_logger.info("Returning visualization for " + industry);
         return new ModelAndView("industryvis", "industrycompanies", companies);
