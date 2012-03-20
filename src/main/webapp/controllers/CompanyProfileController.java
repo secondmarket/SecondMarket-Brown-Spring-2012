@@ -1,4 +1,4 @@
-package webapp;
+package webapp.controllers;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -7,6 +7,9 @@ import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.Controller;
+
+import webapp.Company;
+import webapp.CompanyDAO;
 
 public class CompanyProfileController implements Controller {
 

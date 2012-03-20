@@ -1,6 +1,7 @@
-package webapp;
+package webapp.controllers;
 
 import java.util.Comparator;
+
 import webapp.Company;
 
 public class TotalMoneyCompanyComparator  implements Comparator<Company>{

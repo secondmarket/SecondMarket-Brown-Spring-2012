@@ -1,4 +1,4 @@
-package webapp;
+package webapp.controllers;
 
 import java.io.IOException;
 

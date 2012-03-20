@@ -1,6 +1,7 @@
-package webapp;
+package webapp.controllers;
 
 import java.io.IOException;
+import java.util.Collections;
 import java.util.List;
 
 import javax.servlet.ServletException;
@@ -12,11 +13,15 @@ import org.apache.commons.logging.LogFactory;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.Controller;
 
-public class VisualizeMapController implements Controller {
+import webapp.Company;
+import webapp.CompanyDAO;
+import webapp.LimitedMoneyCompanyComparator;
+
+public class VisualizeDbController implements Controller {
     protected final Log _logger = LogFactory.getLog(getClass());
     private CompanyDAO _companyDao;
 
-    public VisualizeMapController(CompanyDAO companyDao) {
+    public VisualizeDbController(CompanyDAO companyDao) {
     	_companyDao = companyDao;
     }
 		
@@ -25,14 +30,14 @@ public class VisualizeMapController implements Controller {
 		List<Company> companies = _companyDao.find().asList();
 		int limit = 500;
 		if(companies.size()>limit){
-			//Collections.sort(financialorgs,new LimitedMoneyFinancialComparator(5));
-			//Collections.reverse(financialorgs);
+			Collections.sort(companies,new LimitedMoneyCompanyComparator(5));
+			Collections.reverse(companies);
 			companies = companies.subList(0,500);
 		}
 		
-		_logger.info("Returning Map of  " + companies.size() + " Companies");
+		_logger.info("Returning Chart of  " + companies.size() + " companies");
 		
-        return new ModelAndView("vis3", "companies", companies);
+        return new ModelAndView("home", "companies", companies);
 	}
 
 }

@@ -1,7 +1,8 @@
 package webapp;
 
 import org.springframework.web.servlet.ModelAndView;
-import webapp.HelloController;
+
+import webapp.controllers.HelloController;
 import junit.framework.TestCase;
 
 public class HelloControllerTest extends TestCase {

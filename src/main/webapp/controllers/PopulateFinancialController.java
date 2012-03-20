@@ -1,4 +1,4 @@
-package webapp;
+package webapp.controllers;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -10,6 +10,13 @@ import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.Controller;
+
+import webapp.Company;
+import webapp.CompanyDAO;
+import webapp.FinancialOrg;
+import webapp.FinancialOrgDAO;
+import webapp.FundingRound;
+import webapp.Investment;
 
 /*
  * Populates the database

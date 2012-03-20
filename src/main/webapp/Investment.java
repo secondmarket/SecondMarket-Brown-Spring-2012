@@ -20,10 +20,10 @@ public class Investment {
 	}
 	
 	public String getRoundCode() { return _roundCode; }
-	protected void setRoundCode(String roundCode) { _roundCode = roundCode; }
+	public void setRoundCode(String roundCode) { _roundCode = roundCode; }
 	
 	public double getInvestmentAmount() { return _investmentAmount; }
-	protected void setInvestmentAmount(double investment) { _investmentAmount = investment; }
+	public void setInvestmentAmount(double investment) { _investmentAmount = investment; }
 	
 	public int getYear() {return _year; }
 	public void setYear(int year) {_year = year;}

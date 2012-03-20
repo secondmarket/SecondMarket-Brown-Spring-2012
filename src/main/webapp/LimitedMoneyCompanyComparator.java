@@ -3,8 +3,9 @@ package webapp;
 import java.util.Calendar;
 import java.util.Comparator;
 import java.util.List;
-import webapp.FundingRound;
+
 import webapp.Company;
+import webapp.FundingRound;
 
 public class LimitedMoneyCompanyComparator  implements Comparator<Company>{
 	

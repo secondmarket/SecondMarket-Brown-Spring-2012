@@ -1,6 +1,7 @@
 package webapp;
 
 import java.util.Comparator;
+
 import webapp.Company;
 
 public class CompanyComparator  implements Comparator<Company>{
