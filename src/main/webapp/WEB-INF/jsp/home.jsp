@@ -9,12 +9,16 @@
 	<![endif]-->
 	<link rel="stylesheet" href="/css/style.css" type="text/css" media="all">
 	<link rel="stylesheet" href="/css/menu.css" type="text/css" media="all">
+	<link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.8/themes/ui-lightness/jquery-ui.css">
     <title>Crunchbase Data Visualizations</title>
 
 	<script type="text/javascript" src="https://www.google.com/jsapi"></script>
+	<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+	<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.8.18/jquery-ui.min.js"></script>
+    <script type="text/javascript" src="/js/autocomplete.js"></script>
     <script type="text/javascript">
-      google.load("visualization", "1", {packages:["treemap"]});
-      google.setOnLoadCallback(drawChart);
+      google.load("visualization", "1", {packages:["treemap", "geochart"]});
+      google.setOnLoadCallback(drawAll);
       
       function drawAll() {
       	drawChart();
@@ -95,9 +99,7 @@
 		var city = "";
 		var state = "";
 		var country = "";
-		function trim(str) {
-        return str.replace(/^\s+|\s+$/g,"");
-}
+		
 		<c:if test="${!empty company.offices}">
 			city = "<c:out value="${company.offices[0].city}" />";
 			state = "<c:out value="${company.offices[0].state}" />";
@@ -203,6 +205,9 @@
 					</div>
 				</li>
 			</ul>
+			<div class="ui-widget">
+			    <input id="tags" placeholder="City Search" />
+			</div>
 	    </div>
 		<div class="span-24" id="fix_header"></div>
 		<div class="span-22 append-1 prepend-1" id="main_content">

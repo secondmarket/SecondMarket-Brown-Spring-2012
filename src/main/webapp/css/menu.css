@@ -5,7 +5,7 @@
 	position:relative;
 	padding: 4px 10px 4px 10px;
 	margin-right:30px;
-	margin-top:7px;
+	margin-top: 10px;
 	border:none;
 }
 
@@ -220,4 +220,8 @@
 	border:1px solid #aaaaaa;
 	padding:4px 6px 4px 6px;
 	margin:0px 0px 4px 0px;
+}
+
+.ui-widget > #tags {
+    margin-top: -3px;
 }
