@@ -33,7 +33,8 @@
           <c:if test="${!empty company.offices}"> 
             var location = {};
             <c:choose>
-              <c:when test="${company.offices[0].latitude != 0}">
+              <c:when test="${company.offices[0].latitude != 0 && 
+              	company.offices[0].longitude != -95.712891 }">
                 var latLong = new google.maps.LatLng(<c:out value="${company.offices[0].latitude}"/>, 
                 	<c:out value="${company.offices[0].longitude}"/>);
                 var radius = <c:out value="${company.totalMoneyRaised} / 1000"/>;
