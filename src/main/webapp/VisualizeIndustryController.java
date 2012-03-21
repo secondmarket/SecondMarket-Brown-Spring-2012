@@ -26,13 +26,11 @@ public class VisualizeIndustryController implements Controller {
 		industry = industry.substring(0, industry.indexOf('.')).toLowerCase();
 		
 		String location = request.getQueryString();
-		System.out.println(location);
 		if(location!=null && location.contains("%20")){
 			String beg = location.substring(0,location.indexOf("%20"));
 			String end = location.substring(location.indexOf("%20")+"%20".length());
 			location = beg + " " + end;
 		}
-		System.out.println(location);
 		
 		List<Company> companies;
 		int limit = 500;
