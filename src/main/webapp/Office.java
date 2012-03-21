@@ -16,16 +16,16 @@ public class Office {
 	}
 	
 	public String getZip() { return _zip; }
-	protected void setZip(String zip) { _zip = zip.trim(); }
+	protected void setZip(String zip) { _zip = zip == null ? zip : zip.trim(); }
 	
 	public String getCity() { return _city; }
-	protected void setCity(String city) { _city = city.trim(); }
+	protected void setCity(String city) { _city = city == null ? city : city.trim(); }
 	
 	public String getState() { return _state; }
-	protected void setState(String state) { _state = state.trim(); }
+	protected void setState(String state) { _state = state == null ? state : state.trim(); }
 	
 	public String getCountry() { return _country; }
-	protected void setCountry(String country) { _country = country.trim(); }
+	protected void setCountry(String country) { _country = country == null ? country : country.trim(); }
 	
 	public double getLatitude() {return _latitude;}
 	protected void setLatitude(double latitude) { _latitude = latitude; }
