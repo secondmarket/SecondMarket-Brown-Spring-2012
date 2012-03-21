@@ -161,9 +161,16 @@
 				</h4>
 				<h4>Industry:
 				 <script type="text/javascript">
-				 	var industry = "<c:out value="${industrycompanies[0].industry}"/>"; 
+				 	<%
+						String industry = ""+request.getAttribute("javax.servlet.forward.request_uri");
+						industry = industry.substring("/industry/".length(),industry.indexOf('.')).toLowerCase();
+					%>
+				 	var industry = "<%=industry%>";
 				 	switch(industry)
 				 	{
+				 	case "all":
+				 		document.write("All");
+				 		break;
 				 	case "advertising":
 				 		document.write("Advertising");
 				 		break;

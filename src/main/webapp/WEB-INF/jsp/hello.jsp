@@ -17,6 +17,6 @@
 	    	<a href="vis2.htm">View block graph of financial organizations by investments 		made</a><br/>
 	    	<a href="vis3.htm">View Map</a></br>
 	    	<a href="mapstest.htm">View Google Map</a></br>
-			<a href="home.htm">View Site!</a>
+			<a href="/industry/all.htm">View Site!</a>
   </body>
 </html>

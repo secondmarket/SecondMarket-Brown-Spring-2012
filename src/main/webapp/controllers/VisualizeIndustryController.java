@@ -39,14 +39,30 @@ public class VisualizeIndustryController implements Controller {
 		List<Company> companies;
 		int limit = 500;
 		if(location!=null){
-			companies = _companyDao.findByIndustryAndLocation(industry,location).order("-_totalMoneyRaised").limit(limit).asList();
-			Collections.sort(companies,new LimitedMoneyCompanyComparator(5));
-			Collections.reverse(companies);
+			if(industry.equals("all")){
+				companies = _companyDao.findByLocation(location).order("-_totalMoneyRaised").limit(limit).asList();
+				Collections.sort(companies,new LimitedMoneyCompanyComparator(5));
+				Collections.reverse(companies);
+			}
+			else{
+				companies = _companyDao.findByIndustryAndLocation(industry,location).order("-_totalMoneyRaised").limit(limit).asList();
+				Collections.sort(companies,new LimitedMoneyCompanyComparator(5));
+				Collections.reverse(companies);
+			}
 		}
 		else{
-			companies = _companyDao.findByIndustry(industry).order("-_totalMoneyRaised").limit(limit).asList();
-			Collections.sort(companies,new LimitedMoneyCompanyComparator(5));
-			Collections.reverse(companies);
+			if(industry.equals("all")){
+				System.out.println("here");
+				companies = _companyDao.find().asList();
+				Collections.sort(companies,new LimitedMoneyCompanyComparator(5));
+				Collections.reverse(companies);
+				companies = companies.subList(0,500);
+			}
+			else{
+				companies = _companyDao.findByIndustry(industry).order("-_totalMoneyRaised").limit(limit).asList();
+				Collections.sort(companies,new LimitedMoneyCompanyComparator(5));
+				Collections.reverse(companies);
+			}
 		}
 
 		_logger.info("Returning visualization for " + industry);

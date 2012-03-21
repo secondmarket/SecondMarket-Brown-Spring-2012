@@ -1,31 +1,32 @@
 <div class="span-24" id="header">
 	    	<ul id="menu">
-				<li><a href="/home.htm">Home</a></li>
+				<li><a href="/industry/all.htm">Home</a></li>
 				<li><a href="#" class="drop">Industry</a>
 					<div class="dropdown_3columns">
 						<div class="col_1">
 							<ul>
+								<li><a href="/industry/all.htm">All</a></li>
 								<li><a href="/industry/advertising.htm">Advertising</a></li>
 								<li><a href="/industry/biotech.htm">BioTech</a></li>
 								<li><a href="/industry/cleantech.htm">CleanTech</a></li>
 								<li><a href="/industry/hardware.htm">Consumer Electronics/Devices</a></li>
 								<li><a href="/industry/web.htm">Consumer Web</a></li>
 								<li><a href="/industry/ecommerce.htm">eCommerce</a></li>
-								<li><a href="/industry/education.htm">Education</a></li>
 							</ul>
 						</div>
 						<div class="col_1">
 							<ul>
+								<li><a href="/industry/education.htm">Education</a></li>
 								<li><a href="/industry/enterprise.htm">Enterprise</a></li>
 								<li><a href="/industry/games_video.htm">Games, Video and Entertainment</a></li>
 								<li><a href="/industry/legal.htm">Legal</a></li>
 								<li><a href="/industry/mobile.htm">Mobile/Wireless</a></li>
 								<li><a href="/industry/network_hosting.htm">Network/Hosting</a></li>
-								<li><a href="/industry/consulting.htm">Consulting</a></li>
 							</ul>
 						</div>
 						<div class="col_1">
 							<ul>
+								<li><a href="/industry/consulting.htm">Consulting</a></li>
 								<li><a href="/industry/public_relations.htm">Communications</a></li>
 								<li><a href="/industry/search.htm">Search</a></li>
 								<li><a href="/industry/security.htm">Security</a></li>
