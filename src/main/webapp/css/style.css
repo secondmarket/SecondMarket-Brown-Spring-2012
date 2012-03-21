@@ -39,13 +39,19 @@
 	margin:20px 0px;
 	padding:10px 0px;
 	text-align:center;
-	background:#eee;
-	border:1px solid black;
+	background:#FBFBFB;
+	border:2px solid #D9DADB;
 	overflow:hidden;
+	
+	-moz-border-radius: 15px;
+	border-radius: 15px;
+	
+	-moz-box-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
+	-webkit-box-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
+	box-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
 }
-
-#chart_div{
-	margin:10px 0px;
+.chart{
+	margin:10px auto;
 }
 
 .content_box h1,h2,h3,h4,h5,p{

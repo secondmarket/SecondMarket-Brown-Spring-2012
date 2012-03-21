@@ -151,8 +151,12 @@ industry = industry.substring("/industry/".length(),industry.indexOf('.')).toLow
 	<div class="container">
 	    <%@ include file="/WEB-INF/jsp/menu.jsp" %>
 		<div class="span-22 append-1 prepend-1" id="main_content">
+			<div class="span-22 page_header">
+			</div>
+			<div class="span-22 content_header">
+			</div>
 			<div class="span-22 content_box">
-				<h3>Top 500 Companies by Funding<h3>
+								<h3>Top 500 Companies by Funding<h3>
 				<h4>Location: 
 				<% 
 					if(location!=null && location.contains("%20")){
@@ -234,8 +238,10 @@ industry = industry.substring("/industry/".length(),industry.indexOf('.')).toLow
 				 	}
 				 </script>
 				</h4>
-				<div id="chart_div" style="width:880px; height: 500px;"></div>
-				<div id="map_div" style="width:880px; height: 500px;"></div>
+				<div id="chart_div"class="chart" style="width:880px; height: 500px;"></div>
+			</div>
+			<div class="span-22 content_box">
+				<div id="map_div" class="chart" style="width:860px; height: 500px;"></div>
 			</div>
 		</div>
 		<div class="span-24" id="footer">
