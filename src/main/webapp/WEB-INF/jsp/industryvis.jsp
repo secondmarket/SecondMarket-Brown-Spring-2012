@@ -1,6 +1,12 @@
 <%@ include file="/WEB-INF/jsp/include.jsp" %>
 <%@ page import="java.io.*,java.util.*" %>
 
+<%
+String location = request.getQueryString();
+String industry = ""+request.getAttribute("javax.servlet.forward.request_uri");
+industry = industry.substring("/industry/".length(),industry.indexOf('.')).toLowerCase();
+%>
+
 <html>
   <head>
     <link rel="stylesheet" href="/css/blueprint/screen.css" type="text/css" media="screen, projection">
@@ -149,7 +155,6 @@
 				<h3>Top 500 Companies by Funding<h3>
 				<h4>Location: 
 				<% 
-					String location = request.getQueryString();
 					if(location!=null && location.contains("%20")){
 						String beg = location.substring(0,location.indexOf("%20"));
 						String end = location.substring(location.indexOf("%20")+"%20".length());
@@ -161,10 +166,6 @@
 				</h4>
 				<h4>Industry:
 				 <script type="text/javascript">
-				 	<%
-						String industry = ""+request.getAttribute("javax.servlet.forward.request_uri");
-						industry = industry.substring("/industry/".length(),industry.indexOf('.')).toLowerCase();
-					%>
 				 	var industry = "<%=industry%>";
 				 	switch(industry)
 				 	{
