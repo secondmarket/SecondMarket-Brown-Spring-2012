@@ -1,4 +1,4 @@
-package webapp;
+package webapp.controllers;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;

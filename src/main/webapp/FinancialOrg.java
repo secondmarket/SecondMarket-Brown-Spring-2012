@@ -30,8 +30,8 @@ public class FinancialOrg {
 	//protected void setName(String name) { _name = name; }
 
 	public String getPermalink() { return _permalink; }
-	protected void setPermalink(String permalink) { _permalink = permalink; }
+	public void setPermalink(String permalink) { _permalink = permalink; }
 	
 	public List<Investment> getInvestments() { return _investments; }
-	protected void setInvestments(List<Investment> investments) { _investments = investments; }
+	public void setInvestments(List<Investment> investments) { _investments = investments; }
 }

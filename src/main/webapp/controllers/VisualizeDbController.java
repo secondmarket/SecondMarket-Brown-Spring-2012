@@ -1,4 +1,4 @@
-package webapp;
+package webapp.controllers;
 
 import java.io.IOException;
 import java.util.Collections;
@@ -13,16 +13,15 @@ import org.apache.commons.logging.LogFactory;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.Controller;
 
-/**
- * Fetches a list of the top n companies by money raised
- *
- */
-public class FetchDataController implements Controller {
+import webapp.Company;
+import webapp.CompanyDAO;
+import webapp.LimitedMoneyCompanyComparator;
 
+public class VisualizeDbController implements Controller {
     protected final Log _logger = LogFactory.getLog(getClass());
     private CompanyDAO _companyDao;
 
-    public FetchDataController(CompanyDAO companyDao) {
+    public VisualizeDbController(CompanyDAO companyDao) {
     	_companyDao = companyDao;
     }
 		
@@ -36,10 +35,11 @@ public class FetchDataController implements Controller {
 			companies = companies.subList(0,500);
 		}
 		
-		_logger.info("Returning list of " + companies.size() + " companies");
-		
-        return new ModelAndView("list", "companies", companies);
+		_logger.info("Returning Chart of  " + companies.size() + " companies");
+
+		String page = request.getServletPath();
+		page = page.substring(0, page.indexOf('.'));
+        return new ModelAndView(page, "companies", companies);
 	}
 
-	
 }

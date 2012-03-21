@@ -16,6 +16,7 @@ import org.codehaus.jackson.map.DeserializationConfig.Feature;
 import org.codehaus.jackson.map.JsonMappingException;
 import org.codehaus.jackson.map.ObjectMapper;
 
+
 public class CrunchBaseParser {
 
 	private static final String[] EXCLUDED_FIELDS = { "deadpooled_year", "ipo","acquisition" };
@@ -75,7 +76,7 @@ public class CrunchBaseParser {
 	}
 	
 	// Returns a list of permalinks for all companies in CrunchBase
-	List<String> getAllPermalinks() throws JsonParseException, IOException {
+	public List<String> getAllPermalinks() throws JsonParseException, IOException {
 		List<String> permalinks = new ArrayList<String>();
 		URL url = new URL("http://api.crunchbase.com/v/1/companies.js");
 		JsonFactory f = new JsonFactory();
@@ -107,7 +108,7 @@ public class CrunchBaseParser {
 		return permalinks;
 	}
 	
-	Company getCompany(String permalink) throws JsonParseException, JsonMappingException {
+	public Company getCompany(String permalink) throws JsonParseException, JsonMappingException {
 		try {
 			URL url = new URL("http://api.crunchbase.com/v/1/company/" + permalink + ".js");
 			

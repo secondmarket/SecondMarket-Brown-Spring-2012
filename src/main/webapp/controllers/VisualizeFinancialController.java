@@ -1,4 +1,4 @@
-package webapp;
+package webapp.controllers;
 
 import java.io.IOException;
 import java.util.Collections;
@@ -12,6 +12,10 @@ import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.Controller;
+
+import webapp.FinancialOrg;
+import webapp.FinancialOrgDAO;
+import webapp.LimitedMoneyFinancialComparator;
 
 public class VisualizeFinancialController implements Controller {
     protected final Log _logger = LogFactory.getLog(getClass());

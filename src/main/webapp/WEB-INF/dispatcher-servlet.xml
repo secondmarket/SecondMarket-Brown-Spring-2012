@@ -17,40 +17,44 @@
 	   	<constructor-arg value="CompanyDb" index="2" />
 	   </bean>
 	   
-	   <bean name="/list.htm" class="webapp.FetchDataController">
+	   <bean name="/list.htm" class="webapp.controllers.FetchDataController">
 	   	<constructor-arg ref="companyDao" />
 	   </bean>
 	   
-	   <bean name="/companies/*" class="webapp.CompanyProfileController">
+	   <bean name="/companies/*" class="webapp.controllers.CompanyProfileController">
 	   	<constructor-arg ref="companyDao" />
 	   </bean>
 	   
-	   <bean name="/industry/*" class="webapp.VisualizeIndustryController">
+	   <bean name="/industry/*" class="webapp.controllers.VisualizeIndustryController">
 	   	 <constructor-arg ref="companyDao" />
 	   </bean>
 	   
-	   <bean name="/populate_db.htm" class="webapp.PopulateDbController">
+	   <bean name="/populate_db.htm" class="webapp.controllers.PopulateDbController">
 	   	<constructor-arg ref="companyDao" />
 	   </bean>
 	   
-	   <bean name="/populate_financial.htm" class="webapp.PopulateFinancialController">
+	   <bean name="/populate_financial.htm" class="webapp.controllers.PopulateFinancialController">
 	   	<constructor-arg ref="financialOrgDao" index="0" />
 	   	<constructor-arg ref="companyDao" index="1" />
 	   </bean>
 	   
-	   <bean name="/home.htm" class="webapp.VisualizeDbController">
+	   <bean name="/home.htm" class="webapp.controllers.VisualizeDbController">
 	   	<constructor-arg ref="companyDao" />
 	   </bean>
 	   
-	   <bean name="/vis2.htm" class="webapp.VisualizeFinancialController">
+	   <bean name="/vis2.htm" class="webapp.controllers.VisualizeFinancialController">
 	   	<constructor-arg ref="financialOrgDao" />
 	   </bean>
 	   
-	   <bean name="/vis3.htm" class="webapp.VisualizeMapController">
+	   <bean name="/vis3.htm" class="webapp.controllers.VisualizeMapController">
 	   	<constructor-arg ref="companyDao" />
 	   </bean>
 	   
-	   <bean name="/*.htm" class="webapp.BasicPageController">
+	   <bean name="/mapstest.htm" class="webapp.controllers.VisualizeDbController">
+	   	<constructor-arg ref="companyDao" />
+	   </bean>
+	   
+	   <bean name="/*.htm" class="webapp.controllers.BasicPageController">
 	   </bean>
 	  
 	   

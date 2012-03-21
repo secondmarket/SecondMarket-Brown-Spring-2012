@@ -1,4 +1,4 @@
-package webapp;
+package webapp.controllers;
 
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
@@ -18,6 +18,10 @@ import org.apache.commons.logging.LogFactory;
 import org.codehaus.jackson.JsonParseException;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.Controller;
+
+import webapp.Company;
+import webapp.CompanyDAO;
+import webapp.CrunchBaseParser;
 
 /*
  * Populates the database

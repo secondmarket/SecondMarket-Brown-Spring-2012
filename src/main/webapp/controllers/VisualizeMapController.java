@@ -1,4 +1,4 @@
-package webapp;
+package webapp.controllers;
 
 import java.io.IOException;
 import java.util.List;
@@ -11,6 +11,9 @@ import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.Controller;
+
+import webapp.Company;
+import webapp.CompanyDAO;
 
 public class VisualizeMapController implements Controller {
     protected final Log _logger = LogFactory.getLog(getClass());
