@@ -36,8 +36,10 @@ public class VisualizeDbController implements Controller {
 		}
 		
 		_logger.info("Returning Chart of  " + companies.size() + " companies");
-		
-        return new ModelAndView("home", "companies", companies);
+
+		String page = request.getServletPath();
+		page = page.substring(0, page.indexOf('.'));
+        return new ModelAndView(page, "companies", companies);
 	}
 
 }
