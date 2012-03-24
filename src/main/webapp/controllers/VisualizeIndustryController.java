@@ -15,6 +15,8 @@ import webapp.Company;
 import webapp.CompanyDAO;
 import webapp.LimitedMoneyCompanyComparator;
 
+import com.google.code.morphia.query.Query;
+
 public class VisualizeIndustryController implements Controller {
 
     protected final Log _logger = LogFactory.getLog(getClass());
@@ -41,27 +43,18 @@ public class VisualizeIndustryController implements Controller {
 		if(location!=null){
 			if(industry.equals("all")){
 				companies = _companyDao.findByLocation(location).order("-_totalMoneyRaised").limit(limit).asList();
-				Collections.sort(companies,new LimitedMoneyCompanyComparator(5));
-				Collections.reverse(companies);
 			}
 			else{
 				companies = _companyDao.findByIndustryAndLocation(industry,location).order("-_totalMoneyRaised").limit(limit).asList();
-				Collections.sort(companies,new LimitedMoneyCompanyComparator(5));
-				Collections.reverse(companies);
 			}
 		}
 		else{
 			if(industry.equals("all")){
-				System.out.println("here");
-				companies = _companyDao.find().asList();
-				Collections.sort(companies,new LimitedMoneyCompanyComparator(5));
-				Collections.reverse(companies);
-				companies = companies.subList(0,500);
+				Query<Company> comps = (Query<Company>)_companyDao.find();
+				companies = comps.order("-_totalMoneyRaised").limit(limit).asList();
 			}
 			else{
 				companies = _companyDao.findByIndustry(industry).order("-_totalMoneyRaised").limit(limit).asList();
-				Collections.sort(companies,new LimitedMoneyCompanyComparator(5));
-				Collections.reverse(companies);
 			}
 		}
 
