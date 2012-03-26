@@ -2,9 +2,9 @@
 <%@ page import="java.io.*,java.util.*" %>
 
 <%
-String location = request.getQueryString();
-String industry = ""+request.getAttribute("javax.servlet.forward.request_uri");
-industry = industry.substring("/industry/".length(),industry.indexOf('.')).toLowerCase();
+HttpSession session=request.getSession(true);
+String location = (String)session.getAttribute("location");
+String industry = (String)session.getAttribute("industry");
 %>
 
 
@@ -40,6 +40,7 @@ industry = industry.substring("/industry/".length(),industry.indexOf('.')).toLow
 		            <li><c:out value="${round.roundCode}" />: <fmt:formatNumber value="${round.raisedAmount}" type="currency" /></li>
 		          </c:forEach>
 		        </ul>
+		        <a href="/industry/<%=industry%>.htm<% if(location!=null){out.println("?"+location);}%>">Back</a>
 			</div>
 		</div>
   </body>

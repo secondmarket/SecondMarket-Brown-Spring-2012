@@ -5,6 +5,10 @@
 String location = request.getQueryString();
 String industry = ""+request.getAttribute("javax.servlet.forward.request_uri");
 industry = industry.substring("/industry/".length(),industry.indexOf('.')).toLowerCase();
+HttpSession session=request.getSession(true);
+session.setAttribute( "industry", industry );
+session.setAttribute("location", location);
+
 %>
 
 <html>
