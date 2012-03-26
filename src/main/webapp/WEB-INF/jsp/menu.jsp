@@ -1,6 +1,6 @@
 <div class="span-24" id="header">
+			<a id ="logo" href="/industry/all.htm">Home</a>
 	    	<ul id="menu">
-				<li><a href="/industry/all.htm">Home</a></li>
 				<li><a href="#" class="drop">Industry</a>
 					<div class="dropdown_3columns">
 						<div class="col_1">

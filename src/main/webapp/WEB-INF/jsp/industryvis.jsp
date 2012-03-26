@@ -43,17 +43,16 @@ session.setAttribute("location", location);
         data.addColumn('string','Company');
         data.addColumn('string','Parent');
 		data.addColumn('number','Funding Recieved');
-		data.addColumn('number', 'Market increase/decrease (color)');
+		data.addColumn('number', 'Year Founded');
 		data.addRow(["Companies",null,0,0]);
 		data.addRow(["Under $300 Million","Companies",0,0]);
 		data.addRow(["Under $100 Million","Under $300 Million",0,0]);
 		
 		var curryear = new Date().getFullYear();
 		var yearlimit = 5;
-		var i=0;
 		var permalinks = {};
 		<c:forEach items="${industrycompanies}" var="company">
-			i++;
+			var totalMoneyRaised = <c:out value="${company.totalMoneyRaised}"/>;
 			var money=0.0;
 			permalinks["<c:out value="${company.name}"/>"] = "<c:out value="${company.permalink}"/>";
 			var name="<c:out value="${company.name}"/>";
@@ -64,9 +63,9 @@ session.setAttribute("location", location);
 				}
 			</c:forEach>
 			
-			if(money<100000000){data.addRow([name, "Under $100 Million",money,i]);}
-			else if(money<300000000){data.addRow([name, "Under $300 Million",money,i]);}
-			else{data.addRow([name, "Companies",money,i]);}
+			if(money<100000000){data.addRow([name, "Under $100 Million",money,totalMoneyRaised]);}
+			else if(money<300000000){data.addRow([name, "Under $300 Million",money,totalMoneyRaised]);}
+			else{data.addRow([name, "Companies",money,totalMoneyRaised]);}
 		</c:forEach>			
         // Create and draw the visualization.
         var tree = new google.visualization.TreeMap(document.getElementById('chart_div'));
@@ -80,9 +79,9 @@ session.setAttribute("location", location);
 			
 			
         tree.draw(data, {
-          minColor: '#188f28',
-          midColor: '#8f2818',
-          maxColor: '#29198f',
+          minColor: '#bdcc32',
+          midColor: '#0fadda',
+          maxColor: '#de9927',
           headerHeight: 0,
           fontColor: 'black',
           showScale: false});

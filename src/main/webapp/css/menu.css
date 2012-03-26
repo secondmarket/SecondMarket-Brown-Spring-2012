@@ -225,3 +225,14 @@
 .ui-widget > #tags {
     margin-top: -3px;
 }
+
+#logo{
+	float:left;
+	display:block;
+	margin-top:3px;
+	margin-right:10px;
+	background-image:url("/img/logo_white.png");
+	width:160px;
+	height:32px;
+	text-indent:-9999px;
+}
