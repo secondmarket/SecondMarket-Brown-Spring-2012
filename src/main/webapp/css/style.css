@@ -19,12 +19,14 @@
 	);
 	
 	border-bottom:1px solid black;
+	z-index: 4; /* appear above all main content but behind #header */
 }
 
 #header{
 	height:50px;
 	display:block;
 	position:fixed;
+	z-index: 5; /* appear above all main content */
 }
 
 #fix_header{
