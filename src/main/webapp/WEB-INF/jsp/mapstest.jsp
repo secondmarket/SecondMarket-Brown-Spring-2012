@@ -50,6 +50,7 @@
                 var marker = new google.maps.Marker({
                   'position': latLong,
                   'title': "<c:out value="${company.name}"/>" });
+                marker.totalMoneyRaised = <c:out value="${company.totalMoneyRaised}"/>;
                 var infoBox = null;
                 google.maps.event.addListener(marker, "click", function() {
                   if (infoBox) infoBox.close();
@@ -80,6 +81,7 @@
                       var marker = new google.maps.Marker({
                       	'position': latLong, 
                       	'title': "<c:out value="${company.name}"/>" });
+    	              marker.totalMoneyRaised = <c:out value="${company.totalMoneyRaised}"/>;
                       markers.push(marker);
                     }
                   });
