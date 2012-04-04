@@ -90,11 +90,12 @@ session.setAttribute("location", location);
         }
         google.visualization.events.addListener(tree,'select',selectHandler);
             
-            
+        data.sort(2);
         tree.draw(data, {
           minColor: '#bdcc32',
           midColor: '#0fadda',
           maxColor: '#de9927',
+          maxColorValue: data.getNumberOfRows() == 0 ? 0 : data.getValue(data.getNumberOfRows() - 1, 2) * .75,
           headerHeight: 0,
           fontColor: 'black',
           showScale: false});
