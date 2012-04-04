@@ -276,6 +276,22 @@ ClusterIcon.prototype.useStyle = function (sums) {
 
 
 /**
+ * Sets the size based on its cluster's markers
+ */
+ClusterIcon.prototype.setSize = function() {
+  var markers = this.cluster_.markers_;
+  var scale = 0.5;
+  for (var i = 0; i < markers.length; ++i) {
+    scale += 1.5e-10 * markers[i].totalMoneyRaised;
+  }
+  scale = Math.min(1.5, scale);
+  this.height_ *= scale;
+  this.width_ *= scale;
+  this.anchorIcon_ = [parseInt(this.height_ / 2, 10), parseInt(this.width_ / 2, 10)];
+};
+
+
+/**
  * Sets the position at which to center the icon.
  *
  * @param {google.maps.LatLng} center The latlng to set as the center.
@@ -295,7 +311,7 @@ ClusterIcon.prototype.createCss = function (pos) {
   var style = [];
   if (!this.cluster_.printable_) {
     style.push('background-image:url(' + this.url_ + ');');
-    style.push('background-position:' + this.backgroundPosition_ + ';');
+    style.push('background-size: 100%;');
   }
 
   if (typeof this.anchor_ === 'object') {
@@ -552,6 +568,7 @@ Cluster.prototype.updateIcon_ = function () {
   var sums = this.markerClusterer_.getCalculator()(this.markers_, numStyles);
   this.clusterIcon_.setCenter(this.center_);
   this.clusterIcon_.useStyle(sums);
+  this.clusterIcon_.setSize();
   this.clusterIcon_.show();
 };
 
