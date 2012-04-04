@@ -33,6 +33,10 @@
 	   	<constructor-arg ref="companyDao" />
 	   </bean>
 	   
+	   <bean name="/update_db.htm" class="webapp.controllers.PopulateDbController">
+	   	<constructor-arg ref="companyDao" />
+	   </bean>
+	   
 	   <bean name="/populate_financial.htm" class="webapp.controllers.PopulateFinancialController">
 	   	<constructor-arg ref="financialOrgDao" index="0" />
 	   	<constructor-arg ref="companyDao" index="1" />

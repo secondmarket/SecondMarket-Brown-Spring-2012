@@ -22,6 +22,7 @@ import org.springframework.web.servlet.mvc.Controller;
 import webapp.Company;
 import webapp.CompanyDAO;
 import webapp.CrunchBaseParser;
+import webapp.FundingRound;
 
 /*
  * Populates the database
@@ -95,15 +96,52 @@ public class PopulateDbController implements Controller {
     		e.printStackTrace();	
 		}
     }
+    
+    public void updateDb(){
+    	List<Company> companies = _companyDao.find().asList();
+    	int counter = 0;
+    	for(Company c: companies){
+    		counter++;
+    		List<FundingRound> rounds = c.getFundingRounds();
+    		double money = 0;
+    		for(FundingRound fr: rounds){
+    			if(fr.getYear()>=2008){
+    				money=money+fr.getRaisedAmount();
+    			}
+    		}
+    		c.setFiveYearMoneyRaised(money);
+    		_companyDao.save(c);
+    		if(counter%100==0){
+    			System.out.println(counter);
+    		}
+    	}
+    }
 
-	public ModelAndView handleRequest(HttpServletRequest arg0,
-			HttpServletResponse arg1) throws Exception {
-		// make sure database wasn't already populated
-		if (!_gettingData) {
-			_gettingData = true;
-			saveCrunchbaseDataToDb();
+	public ModelAndView handleRequest(HttpServletRequest request,
+			HttpServletResponse response) throws Exception {
+		//check for update vs first populate
+		String add = request.getServletPath();
+		add = add.substring(0, add.indexOf('.'));
+		
+		System.out.println(add);
+		//if a db populate is being requested
+		if(add.equals("/populate_db")){
+			// make sure database wasn't already populated
+			if (!_gettingData) {
+				_gettingData = true;
+				saveCrunchbaseDataToDb();
+			}
+			return new ModelAndView("hello");
 		}
-		return new ModelAndView("hello");
+		//if a db update is being requested
+		else if(add.equals("/update_db")){
+			updateDb();
+			return new ModelAndView("hello");
+		}
+		//if something else is being requested
+		else{
+			return new ModelAndView("hello");
+		}
 	}
     
     

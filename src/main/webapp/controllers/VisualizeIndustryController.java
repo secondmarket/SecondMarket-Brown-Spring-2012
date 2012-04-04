@@ -39,22 +39,22 @@ public class VisualizeIndustryController implements Controller {
 		}
 		
 		List<Company> companies;
-		int limit = 500;
+		int limit = 300;
 		if(location!=null){
 			if(industry.equals("all")){
-				companies = _companyDao.findByLocation(location).order("-_totalMoneyRaised").limit(limit).asList();
+				companies = _companyDao.findByLocation(location).order("-_fiveYearMoneyRaised").limit(limit).asList();
 			}
 			else{
-				companies = _companyDao.findByIndustryAndLocation(industry,location).order("-_totalMoneyRaised").limit(limit).asList();
+				companies = _companyDao.findByIndustryAndLocation(industry,location).order("-_fiveYearMoneyRaised").limit(limit).asList();
 			}
 		}
 		else{
 			if(industry.equals("all")){
 				Query<Company> comps = (Query<Company>)_companyDao.find();
-				companies = comps.order("-_totalMoneyRaised").limit(limit).asList();
+				companies = comps.order("-_fiveYearMoneyRaised").limit(limit).asList();
 			}
 			else{
-				companies = _companyDao.findByIndustry(industry).order("-_totalMoneyRaised").limit(limit).asList();
+				companies = _companyDao.findByIndustry(industry).order("-_fiveYearMoneyRaised").limit(limit).asList();
 			}
 		}
 

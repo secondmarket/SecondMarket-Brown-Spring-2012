@@ -22,8 +22,9 @@ public class Company {
 	private int _numEmployees;
 	private String _overview;
 	private String _imageUrl;
-	private double _totalMoneyRaised;
+	private double _totalMoneyRaised, _fiveYearMoneyRaised;
 	private String _industry;
+	private int _yearFounded;
 	
 	@Embedded
 	private List<FundingRound> _fundingRounds;
@@ -92,6 +93,13 @@ public class Company {
 
 		_totalMoneyRaised = Double.parseDouble(sb.toString()) * mult;
 	}
+	
+	
+	public int getYearFounded() { return _yearFounded; }
+	protected void setYearFounded(int year) { _yearFounded = year; }
+	
+	public double getFiveYearMoneyRaised() { return _fiveYearMoneyRaised; }
+	public void setFiveYearMoneyRaised(double money) { _fiveYearMoneyRaised = money; }
 	
 	public String getIndustry() { return _industry; }
 	protected void setIndustry(String industry) { _industry = industry; }

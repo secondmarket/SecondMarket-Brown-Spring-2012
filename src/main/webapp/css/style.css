@@ -19,12 +19,14 @@
 	);
 	
 	border-bottom:1px solid black;
+	z-index:998;
 }
 
 #header{
 	height:50px;
 	display:block;
 	position:fixed;
+	z-index:999;
 }
 
 #fix_header{
