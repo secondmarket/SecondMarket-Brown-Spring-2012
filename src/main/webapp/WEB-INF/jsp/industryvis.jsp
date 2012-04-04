@@ -56,7 +56,8 @@ session.setAttribute("location", location);
 		data.addColumn('number', 'Year Founded');
 		data.addRow(["Companies",null,0,0]);
 		data.addRow(["Under <fmt:formatNumber value="${industrycompanies[50].fiveYearMoneyRaised}" type="currency"/>","Companies",0,0]);
-		data.addRow(["Under <fmt:formatNumber value="${industrycompanies[150].fiveYearMoneyRaised}" type="currency"/>","Under <fmt:formatNumber value="${industrycompanies[50].fiveYearMoneyRaised}" type="currency"/>",0,0]);
+		data.addRow(["Under <fmt:formatNumber value="${industrycompanies[100].fiveYearMoneyRaised}" type="currency"/>","Under <fmt:formatNumber value="${industrycompanies[50].fiveYearMoneyRaised}" type="currency"/>",0,0]);
+		data.addRow(["Under <fmt:formatNumber value="${industrycompanies[150].fiveYearMoneyRaised}" type="currency"/>","Under <fmt:formatNumber value="${industrycompanies[100].fiveYearMoneyRaised}" type="currency"/>",0,0]);
 		
 		var curryear = new Date().getFullYear();
 		var yearlimit = 5;
@@ -72,9 +73,10 @@ session.setAttribute("location", location);
 				//	money = money+<c:out value="${round.raisedAmount}"/>;
 				//}
 			//</c:forEach>
-			
-			if(money<<c:out value="${industrycompanies[50].fiveYearMoneyRaised}"/>){data.addRow([name, "Under <fmt:formatNumber value="${industrycompanies[50].fiveYearMoneyRaised}" type="currency"/>",money,totalMoneyRaised]);}
-			else if(money<<c:out value="${industrycompanies[150].fiveYearMoneyRaised}"/>){data.addRow([name, "Under <fmt:formatNumber value="${industrycompanies[150].fiveYearMoneyRaised}" type="currency"/>",money,totalMoneyRaised]);}
+
+			if(money<<c:out value="${industrycompanies[150].fiveYearMoneyRaised}"/>){data.addRow([name, "Under <fmt:formatNumber value="${industrycompanies[150].fiveYearMoneyRaised}" type="currency"/>",money,totalMoneyRaised]);}
+			else if(money<<c:out value="${industrycompanies[100].fiveYearMoneyRaised}"/>){data.addRow([name, "Under <fmt:formatNumber value="${industrycompanies[100].fiveYearMoneyRaised}" type="currency"/>",money,totalMoneyRaised]);}
+			else if(money<<c:out value="${industrycompanies[50].fiveYearMoneyRaised}"/>){data.addRow([name, "Under <fmt:formatNumber value="${industrycompanies[50].fiveYearMoneyRaised}" type="currency"/>",money,totalMoneyRaised]);}
 			else{data.addRow([name, "Companies",money,totalMoneyRaised]);}
 		</c:forEach>			
 		

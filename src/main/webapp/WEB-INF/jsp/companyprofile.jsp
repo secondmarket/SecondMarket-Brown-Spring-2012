@@ -33,14 +33,18 @@ String industry = (String)session.getAttribute("industry");
 			    <img src="http://crunchbase.com/<c:out value="${company.imageUrl}" />" alt="header image" />
         		<h1><c:out value="${company.name}" /></h1>
         	    <hr />
-		        <p>Total money raised: <fmt:formatNumber value="${company.totalMoneyRaised}" type="currency"/></p>
-		        <p>Money raised over the last 5 years: <fmt:formatNumber value="${company.fiveYearMoneyRaised}" type="currency"/></p>
-		        <h2>Funding rounds:</h2>
-		        <ul>
-		          <c:forEach var="round" items="${company.fundingRounds}">
-		            <li><c:out value="${round.roundCode}" />: <fmt:formatNumber value="${round.raisedAmount}" type="currency" /></li>
-		          </c:forEach>
-		        </ul>
+				<div class="companyprofile">
+		        	<p>Total money raised: <fmt:formatNumber value="${company.totalMoneyRaised}" type="currency"/></p>
+		        	<p>Money raised over the last 5 years: <fmt:formatNumber value="${company.fiveYearMoneyRaised}" type="currency"/></p>
+		        	<h2>Funding rounds:</h2>
+		        	<ul>
+		          	<c:forEach var="round" items="${company.fundingRounds}">
+		            	<li><c:out value="${round.roundCode}" />: <fmt:formatNumber value="${round.raisedAmount}" type="currency" /></li>
+		          	</c:forEach>
+		        	</ul>
+		        	<a href="http://www.crunchbase.com/company/<c:out value="${company.permalink}"/>">CrunchBase profile</a>
+		        </div>
+        	    <hr />
 		        <a href="/industry/<%=industry%>.htm<% if(location!=null){out.println("?"+location);}%>">Back</a>
 			</div>
 		</div>
