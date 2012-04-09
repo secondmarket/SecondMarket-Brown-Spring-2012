@@ -55,29 +55,47 @@ session.setAttribute("location", location);
 		data.addColumn('number','Funding Recieved');
 		data.addColumn('number', 'Year Founded');
 		data.addRow(["Companies",null,0,0]);
+		<c:if test="${fn:length(industrycompanies) gt 50}">
 		data.addRow(["Under <fmt:formatNumber value="${industrycompanies[50].fiveYearMoneyRaised}" type="currency"/>","Companies",0,0]);
+		<c:if test="${fn:length(industrycompanies) gt 100}">
 		data.addRow(["Under <fmt:formatNumber value="${industrycompanies[100].fiveYearMoneyRaised}" type="currency"/>","Under <fmt:formatNumber value="${industrycompanies[50].fiveYearMoneyRaised}" type="currency"/>",0,0]);
+		<c:if test="${fn:length(industrycompanies) gt 150}">
 		data.addRow(["Under <fmt:formatNumber value="${industrycompanies[150].fiveYearMoneyRaised}" type="currency"/>","Under <fmt:formatNumber value="${industrycompanies[100].fiveYearMoneyRaised}" type="currency"/>",0,0]);
+		</c:if>
+		</c:if>
+		</c:if>
 		
 		var curryear = new Date().getFullYear();
 		var yearlimit = 5;
 		var permalinks = {};
 		<c:forEach items="${industrycompanies}" var="company">
-			var totalMoneyRaised = <c:out value="${company.totalMoneyRaised}"/>;
-			var money=<c:out value="${company.fiveYearMoneyRaised}"/>;
-			permalinks["<c:out value="${company.name}"/>"] = "<c:out value="${company.permalink}"/>";
-			var name="<c:out value="${company.name}"/>";
-			//<c:forEach items="${company.fundingRounds}" var="round">
-				//var funyear = <c:out value="${round.year}"/>;
-				//if((curryear-funyear)<5 && (curryear-funyear)>0){
-				//	money = money+<c:out value="${round.raisedAmount}"/>;
-				//}
-			//</c:forEach>
+			var totalMoneyRaised = ${company.totalMoneyRaised};
+			var money = ${company.fiveYearMoneyRaised};
+			permalinks["${company.name}"] = "${company.permalink}";
+			var name = "${company.name}";
 
-			if(money<<c:out value="${industrycompanies[150].fiveYearMoneyRaised}"/>){data.addRow([name, "Under <fmt:formatNumber value="${industrycompanies[150].fiveYearMoneyRaised}" type="currency"/>",money,totalMoneyRaised]);}
-			else if(money<<c:out value="${industrycompanies[100].fiveYearMoneyRaised}"/>){data.addRow([name, "Under <fmt:formatNumber value="${industrycompanies[100].fiveYearMoneyRaised}" type="currency"/>",money,totalMoneyRaised]);}
-			else if(money<<c:out value="${industrycompanies[50].fiveYearMoneyRaised}"/>){data.addRow([name, "Under <fmt:formatNumber value="${industrycompanies[50].fiveYearMoneyRaised}" type="currency"/>",money,totalMoneyRaised]);}
-			else{data.addRow([name, "Companies",money,totalMoneyRaised]);}
+		    for (var i = 0; i < 1; ++i) {
+		    <c:if test="${fn:length(industrycompanies) gt 150}">
+			if (money<${industrycompanies[150].fiveYearMoneyRaised}) {
+			  data.addRow([name, "Under <fmt:formatNumber value="${industrycompanies[150].fiveYearMoneyRaised}" type="currency"/>",money,totalMoneyRaised]);
+			  break;
+			}
+			</c:if>
+		    <c:if test="${fn:length(industrycompanies) gt 100}">
+			if (money<${industrycompanies[100].fiveYearMoneyRaised}) {
+			  data.addRow([name, "Under <fmt:formatNumber value="${industrycompanies[100].fiveYearMoneyRaised}" type="currency"/>",money,totalMoneyRaised]);
+			  break;
+			}
+			</c:if>
+		    <c:if test="${fn:length(industrycompanies) gt 50}">
+			if (money<${industrycompanies[50].fiveYearMoneyRaised}) {
+			  data.addRow([name, "Under <fmt:formatNumber value="${industrycompanies[50].fiveYearMoneyRaised}" type="currency"/>",money,totalMoneyRaised]);
+			  break;
+			}
+			</c:if>
+			data.addRow([name, "Companies",money,totalMoneyRaised]);
+			break;
+			}
 		</c:forEach>			
 		
         // Create and draw the visualization.
@@ -295,7 +313,7 @@ session.setAttribute("location", location);
             <div class="span-22 content_header">
             </div>
             <div class="span-22 content_box">
-                                <h3>Top 500 Companies by Funding<h3>
+                                <h3>Top ${fn:length(industrycompanies)} Companies by Funding<h3>
                 <h4>Location: 
                 <% 
                     if(location!=null && location.contains("%20")){
