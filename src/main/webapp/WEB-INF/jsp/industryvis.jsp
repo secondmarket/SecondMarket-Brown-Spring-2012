@@ -220,10 +220,11 @@ session.setAttribute("location", location);
                 markers.push(marker);
               </c:when>
               <c:otherwise>
+                var address = "<c:out value="${company.offices[0].address}"/>";
                 <c:if test="${!empty company.offices[0].city}">
-                  var address = "<c:out value="${company.offices[0].city}"/>";
+                  address += ", <c:out value="${company.offices[0].city}"/>";
                   <c:if test="${!empty company.offices[0].state}">
-                    address += "<c:out value="${company.offices[0].state}"/>";
+                    address += ", <c:out value="${company.offices[0].state}"/>";
                   </c:if>
                   geocoder.geocode({'address': address}, function(results, status) {
                     if (status == google.maps.GeocoderStatus.OK) {

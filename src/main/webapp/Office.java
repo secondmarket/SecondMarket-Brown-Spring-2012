@@ -9,7 +9,7 @@ import com.google.code.morphia.annotations.Embedded;
 @Embedded
 public class Office {
 	
-	private String _zip, _city, _state, _country;
+	private String _zip, _city, _state, _country, _address1, _address2;
 	private double _latitude, _longitude;
 
 	public Office() {
@@ -32,4 +32,8 @@ public class Office {
 	
 	public double getLongitude() {return _longitude;}
 	protected void setLongitude(double longitude) { _longitude = longitude; }
+	
+	public String getAddress() { return _address1 + " " + _address2; }
+	protected void setAddress1(String address1) { _address1 = address1; }
+	protected void setAddress2(String address2) { _address2 = address2; }
 }

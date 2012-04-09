@@ -18,5 +18,6 @@ public abstract class OfficeMixIn extends Office {
 	@JsonProperty("country_code") protected abstract void setCountry(String country);
 	@JsonProperty("latitude") protected abstract void setLatitude(double latitude);
 	@JsonProperty("longitude") protected abstract void setLongitude(double longitude);
-
+	@JsonProperty("address1") public abstract void setAddress1(String address1);
+	@JsonProperty("address2") public abstract void setAddress2(String address2);
 }
