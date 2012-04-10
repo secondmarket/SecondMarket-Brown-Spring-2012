@@ -1,6 +1,5 @@
 package webapp.controllers;
 
-import java.util.Collections;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
@@ -13,7 +12,6 @@ import org.springframework.web.servlet.mvc.Controller;
 
 import webapp.Company;
 import webapp.CompanyDAO;
-import webapp.LimitedMoneyCompanyComparator;
 
 import com.google.code.morphia.query.Query;
 
@@ -39,7 +37,7 @@ public class VisualizeIndustryController implements Controller {
 		}
 		
 		List<Company> companies;
-		int limit = 300;
+		int limit = 250;
 		if(location!=null){
 			if(industry.equals("all")){
 				companies = _companyDao.findByLocation(location).order("-_fiveYearMoneyRaised").limit(limit).asList();

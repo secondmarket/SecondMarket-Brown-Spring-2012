@@ -75,26 +75,26 @@ session.setAttribute("location", location);
 			var name = "${company.name}";
 
 		    for (var i = 0; i < 1; ++i) {
-		    <c:if test="${fn:length(industrycompanies) gt 150}">
-			if (money<${industrycompanies[150].fiveYearMoneyRaised}) {
-			  data.addRow([name, "Under <fmt:formatNumber value="${industrycompanies[150].fiveYearMoneyRaised}" type="currency"/>",money,totalMoneyRaised]);
+		      <c:if test="${fn:length(industrycompanies) gt 150}">
+			  if (money<${industrycompanies[150].fiveYearMoneyRaised}) {
+			    data.addRow([name, "Under <fmt:formatNumber value="${industrycompanies[150].fiveYearMoneyRaised}" type="currency"/>",money,totalMoneyRaised]);
+			    break;
+			  }
+			  </c:if>
+		      <c:if test="${fn:length(industrycompanies) gt 100}">
+			  if (money<${industrycompanies[100].fiveYearMoneyRaised}) {
+			    data.addRow([name, "Under <fmt:formatNumber value="${industrycompanies[100].fiveYearMoneyRaised}" type="currency"/>",money,totalMoneyRaised]);
+			    break;
+			  }
+			  </c:if>
+		      <c:if test="${fn:length(industrycompanies) gt 50}">
+			  if (money<${industrycompanies[50].fiveYearMoneyRaised}) {
+			    data.addRow([name, "Under <fmt:formatNumber value="${industrycompanies[50].fiveYearMoneyRaised}" type="currency"/>",money,totalMoneyRaised]);
+			    break;
+			  }
+			  </c:if>
+			  data.addRow([name, "Companies",money,totalMoneyRaised]);
 			  break;
-			}
-			</c:if>
-		    <c:if test="${fn:length(industrycompanies) gt 100}">
-			if (money<${industrycompanies[100].fiveYearMoneyRaised}) {
-			  data.addRow([name, "Under <fmt:formatNumber value="${industrycompanies[100].fiveYearMoneyRaised}" type="currency"/>",money,totalMoneyRaised]);
-			  break;
-			}
-			</c:if>
-		    <c:if test="${fn:length(industrycompanies) gt 50}">
-			if (money<${industrycompanies[50].fiveYearMoneyRaised}) {
-			  data.addRow([name, "Under <fmt:formatNumber value="${industrycompanies[50].fiveYearMoneyRaised}" type="currency"/>",money,totalMoneyRaised]);
-			  break;
-			}
-			</c:if>
-			data.addRow([name, "Companies",money,totalMoneyRaised]);
-			break;
 			}
 		</c:forEach>			
 		
