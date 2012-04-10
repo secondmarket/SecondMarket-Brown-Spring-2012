@@ -20,6 +20,7 @@ session.setAttribute("location", location);
     <![endif]-->
     <link rel="stylesheet" href="/css/style.css" type="text/css" media="all">
     <link rel="stylesheet" href="/css/menu.css" type="text/css" media="all">
+    <link rel="stylesheet" href="/css/tooltip.css" type="text/css" media="all">
     <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.8/themes/ui-lightness/jquery-ui.css">
     <title>Crunchbase Data Visualizations</title>
  
@@ -27,10 +28,11 @@ session.setAttribute("location", location);
     <script type="text/javascript"
       src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCL6xjh4GQqtL4YHsU1a2FPmLysU93ntO0&sensor=false">
     </script>
-    <script type="text/javascript" src="/js/markerclusterer.js"></script>
-    <script type="text/javascript" src="/js/infobox.js"></script>
     <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
     <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.8.18/jquery-ui.min.js"></script>
+    <script type="text/javascript" src="/js/markerclusterer.js"></script>
+    <script type="text/javascript" src="/js/infobox.js"></script>
+    <script type="text/javascript" src="/js/tooltip.js"></script>
     <script type="text/javascript" src="/js/autocomplete.js"></script>
     
     <script type="text/javascript">
@@ -106,8 +108,18 @@ session.setAttribute("location", location);
           var perma = permalinks[data.getValue(selection.row,0)];
           if(perma!=undefined){window.location="/companies/"+perma+".htm"}
         }
+        function mouseoverHandler(e) {
+          var name = data.getValue(e.row, 0);
+          $('#treemapSelection').text(name);
+        }
+        function mouseoutHandler(e) {
+          $('#treemapSelection').text('');
+        }
+
         google.visualization.events.addListener(tree,'select',selectHandler);
-            
+        google.visualization.events.addListener(tree,'onmouseover',mouseoverHandler);
+        google.visualization.events.addListener(tree,'onmouseout',mouseoutHandler);
+
         data.sort(2);
         tree.draw(data, {
           minColor: '#bdcc32',
@@ -116,7 +128,7 @@ session.setAttribute("location", location);
           maxColorValue: data.getNumberOfRows() == 0 ? 0 : data.getValue(data.getNumberOfRows() - 1, 2) * .75,
           headerHeight: 0,
           fontColor: 'black',
-          showScale: false});
+          showScale: false });
       }
 
       // draws a chart showing funding geographically
@@ -313,7 +325,7 @@ session.setAttribute("location", location);
             <div class="span-22 content_header">
             </div>
             <div class="span-22 content_box">
-                                <h3>Top ${fn:length(industrycompanies)} Companies by Funding<h3>
+                <h3>Top ${fn:length(industrycompanies)} Companies by Funding<h3>
                 <h4>Location: 
                 <% 
                     if(location!=null && location.contains("%20")){
@@ -395,7 +407,8 @@ session.setAttribute("location", location);
                     }
                  </script>
                 </h4>
-                <div id="chart_div"class="chart" style="width:880px; height: 500px;"></div>
+                <div id="chart_div" class="chart" style="width:880px; height: 500px;"></div>
+                <div style="height: 10px"><h4 id="treemapSelection"></h4></div>
             </div>
             <div class="span-22 content_box">
                 <div id="map_div" class="chart" style="width:860px; height: 500px;"></div>
