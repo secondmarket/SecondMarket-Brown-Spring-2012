@@ -30,12 +30,19 @@ String industry = (String)session.getAttribute("industry");
       google.load('visualization', '1.0', {'packages':['corechart']});
 
       // Set a callback to run when the Google Visualization API is loaded.
-      google.setOnLoadCallback(drawChart);
+      google.setOnLoadCallback(drawCharts);
+
+      var curryear = new Date().getFullYear();    
+
+      function drawCharts() {
+          drawPieChart();
+          drawLineChart();
+      }
 
       // Callback that creates and populates a data table,
       // instantiates the pie chart, passes in the data and
       // draws it.
-      function drawChart() {
+      function drawPieChart() {
 
         // Create the data table.
         var data = new google.visualization.DataTable();
@@ -52,8 +59,44 @@ String industry = (String)session.getAttribute("industry");
                        'height':300};
 
         // Instantiate and draw our chart, passing in some options.
-        var chart = new google.visualization.PieChart(document.getElementById('chart_div'));
+        var chart = new google.visualization.PieChart(document.getElementById('piechart_div'));
         chart.draw(data, options);
+      }
+
+      // draws a chart showing funding by year
+      function drawLineChart() {
+        var data = new google.visualization.DataTable();
+        data.addColumn('string', 'Year');
+        data.addColumn('number', 'Money Raised');
+        var rows = {};
+        <c:set var="company" value="${companies[0]}"/>
+        <c:forEach items="${company.fundingRounds}" var="round">
+          var funyear = <c:out value="${round.year}"/>;
+          if ((curryear - funyear) < 10 && (curryear - funyear) > 0) {
+            if (rows[funyear]) {
+              rows[funyear] += <c:out value="${round.raisedAmount}"/>;
+            } else {
+              rows[funyear] = <c:out value="${round.raisedAmount}"/>;
+            }
+          }
+        </c:forEach>
+        data.addRows(jsonToRows(rows));
+
+        var options = {
+          title: 'Total Funding by Year',
+        };
+
+        var chart = new google.visualization.LineChart(document.getElementById('linechart_div'));
+        chart.draw(data, options);
+      }
+
+      function jsonToRows(json) {
+        var rows = [];
+        for (var key in json) {
+            rows.push([key, json[key]]);
+        }
+
+        return rows;
       }
    	  </c:if>
     </script>
@@ -168,7 +211,10 @@ String industry = (String)session.getAttribute("industry");
 			</div>
 			<c:if test="${companies[1]!=null}">
 			<div class="span-22 content_box">
-			 	<div id="chart_div"></div>
+			 	<div id="piechart_div"></div>
+			</div>
+			<div class="span-22 content_box">
+			 	<div id="linechart_div"></div>
 			</div>
 			</c:if>
 		</div>
