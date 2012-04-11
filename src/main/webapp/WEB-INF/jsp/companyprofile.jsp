@@ -73,8 +73,14 @@ String industry = (String)session.getAttribute("industry");
 			<div class="span-22 content_header">
 			</div>
 			<div class="span-22 content_box">
-			    <img src="http://crunchbase.com/<c:out value="${companies[0].imageUrl}" />" alt="header image" />
-        		<h1><c:out value="${companies[0].name}" /></h1>
+			    <c:choose>
+			    <c:when test="${!empty companies[0].imageUrl}">
+			      <h1><img src="http://crunchbase.com/<c:out value="${companies[0].imageUrl}" />" alt="${companies[0].name}" /></h1>
+        		</c:when>
+        		<c:otherwise>
+        		  <h1><c:out value="${companies[0].name}" /></h1>
+        	    </c:otherwise>
+        	    </c:choose>
         	    <hr />
 				<div class="companyprofile">
 					<script type="text/javascript">document.write(htmlDecode("<c:out value="${companies[0].overview}"/>"));</script>
@@ -83,10 +89,10 @@ String industry = (String)session.getAttribute("industry");
 		        	<h2>Funding rounds:</h2>
 		        	<ul>
 		          	<c:forEach var="round" items="${companies[0].fundingRounds}">
-		            	<li><c:out value="${round.roundCode}" />: <fmt:formatNumber value="${round.raisedAmount}" type="currency" /></li>
+		            	<li>${round.roundName}, ${round.year}: <fmt:formatNumber value="${round.raisedAmount}" type="currency" /></li>
 		          	</c:forEach>
 		        	</ul>
-		        	<a href="http://www.crunchbase.com/company/<c:out value="${companies[0].permalink}"/>">CrunchBase profile</a>
+		        	<a href="http://www.crunchbase.com/company/${companies[0].permalink}">CrunchBase profile</a>
 		        </div>
         	    <hr />
 		        <a href="/industry/<%=industry%>.htm<% if(location!=null){out.println("?"+location);}%>">Back</a>

@@ -17,7 +17,7 @@ public class FundingRound {
 	
 	private String _roundCode;
 	private double _raisedAmount;
-	private int _year;
+	private int _day, _month, _year;
 	private List<InvestorType> _investorTypes;
 	private List<String> _investorPermalinks;
 
@@ -26,12 +26,35 @@ public class FundingRound {
 		_investorPermalinks = new ArrayList<String>();
 	}
 	
+	// returns round code formatted for output
+	public String getRoundName() {
+		if (_roundCode == null || _roundCode.equals("")) return "";
+		// special-cased words
+		if (_roundCode.length() == 1) {
+			return "Series " + _roundCode.toUpperCase();
+		}
+		if (_roundCode.equals("debt_round")) {
+			return "Debt";
+		}
+		if (_roundCode.equals("unattributed")) {
+			return "Venture Round";
+		}
+		// otherwise capitalize first letter
+		return Character.toUpperCase(_roundCode.charAt(0)) + _roundCode.substring(1);
+	}
+	
 	public String getRoundCode() { return _roundCode; }
 	protected void setRoundCode(String roundCode) { _roundCode = roundCode; }
 	
 	public double getRaisedAmount() { return _raisedAmount; }
 	protected void setRaisedAmount(double raisedAmount) { _raisedAmount = raisedAmount; }
 
+	public int getDay() { return _day; }
+	protected void setDay(int day) { _day = day; }
+
+	public int getMonth() { return _month; }
+	protected void setMonth(int month) { _month = month; }
+	
 	public int getYear() { return _year; }
 	protected void setYear(int year) { _year = year; }
 	
