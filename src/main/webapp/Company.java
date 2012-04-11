@@ -1,6 +1,7 @@
 package webapp;
 
 import java.util.List;
+import java.util.ArrayList;
 import java.util.Map;
 
 import org.bson.types.ObjectId;
@@ -25,6 +26,8 @@ public class Company {
 	private double _totalMoneyRaised, _fiveYearMoneyRaised;
 	private String _industry;
 	private int _yearFounded;
+	
+	private List<String> _competitors;
 	
 	@Embedded
 	private List<FundingRound> _fundingRounds;
@@ -109,4 +112,18 @@ public class Company {
 	
 	public List<Office> getOffices() {return _offices;}
 	protected void setOffices(List<Office> offices) { _offices = offices;}
+	
+	public List<String> getCompetitors() {return _competitors;}
+	protected void setCompetitors(List<Map<String, Map<String, Object>>> json) {
+		if(json==null){
+			_competitors=null;
+			return;
+		}
+		List<String> competitors = new ArrayList();
+		for(Map<String, Map<String, Object>> comps: json){
+			String comp = (String)comps.get("competitor").get("permalink");
+			competitors.add(comp);
+		}
+		_competitors = competitors;
+	}
 }

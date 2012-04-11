@@ -11,6 +11,9 @@ import org.springframework.web.servlet.mvc.Controller;
 import webapp.Company;
 import webapp.CompanyDAO;
 
+import java.util.List;
+import java.util.ArrayList;
+
 public class CompanyProfileController implements Controller {
 
     protected final Log _logger = LogFactory.getLog(getClass());
@@ -27,7 +30,17 @@ public class CompanyProfileController implements Controller {
 		_logger.info("Returning profile for " + companyName);
 		Company company = _companyDao.findByPermalink(companyName);
 		if (company != null) {
-			return new ModelAndView("companyprofile", "company", company);		
+			List<Company> companies = new ArrayList<Company>();
+			companies.add(company);
+			List<String> competitors = company.getCompetitors();
+			if(competitors!=null){
+				for(String comp : competitors){
+					if(_companyDao.findByPermalink(comp)!=null){
+						companies.add(_companyDao.findByPermalink(comp));
+					}
+				}
+			}
+			return new ModelAndView("companyprofile", "companies", companies);		
 		} else {
 			// Company went missing, just default to main page for now
 			return new ModelAndView("hello");

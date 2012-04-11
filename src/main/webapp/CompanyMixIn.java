@@ -23,6 +23,7 @@ public abstract class CompanyMixIn extends Company {
 	@JsonProperty("category_code") public abstract String getIndustry();
 	@JsonProperty("offices") public abstract List<Office> getOffices();
 	@JsonProperty("founded_year") public abstract int getYearFounded();
+	@JsonProperty("competitions") public abstract List<String> getCompetitors();
 	
 	@JsonProperty("name") protected abstract void setName(String name);
 	@JsonProperty("permalink") protected abstract void setPermalink(String permalink);
@@ -36,4 +37,5 @@ public abstract class CompanyMixIn extends Company {
 	@JsonProperty("category_code") protected abstract void setIndustry(String industry);
 	@JsonProperty("offices") protected abstract void setOffices(List<Office> offices);
 	@JsonProperty("founded_year") protected abstract void setYearFounded(int year);
+	@JsonProperty("competitions") protected abstract void setCompetitors(List<Map<String, Map<String, Object>>> json);
 }
