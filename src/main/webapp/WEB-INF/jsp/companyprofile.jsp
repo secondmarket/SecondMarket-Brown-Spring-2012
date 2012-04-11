@@ -17,18 +17,15 @@ String industry = (String)session.getAttribute("industry");
 	<![endif]-->
 	<link rel="stylesheet" href="/css/menu.css" type="text/css" media="all">
 	<link rel="stylesheet" href="/css/style.css" type="text/css" media="all">
-	<script type="text/javascript">
+	<!--Load the AJAX API-->
+    <script type="text/javascript" src="https://www.google.com/jsapi"></script>
+    <script type="text/javascript">
 		function htmlDecode(input){
 			var e = document.createElement('div');
 			e.innerHTML = input;
 			return e.childNodes[0].nodeValue;
 		}
-	</script>
-	<c:if test="${companies[1]!=null}">
-	<!--Load the AJAX API-->
-    <script type="text/javascript" src="https://www.google.com/jsapi"></script>
-    <script type="text/javascript">
-
+	  <c:if test="${companies[1]!=null}">
       // Load the Visualization API and the piechart package.
       google.load('visualization', '1.0', {'packages':['corechart']});
 
@@ -58,8 +55,8 @@ String industry = (String)session.getAttribute("industry");
         var chart = new google.visualization.PieChart(document.getElementById('chart_div'));
         chart.draw(data, options);
       }
+   	  </c:if>
     </script>
-   </c:if>
     <title><c:out value="${companies[0].name}" /></title>
   </head>
   <body>
@@ -73,23 +70,101 @@ String industry = (String)session.getAttribute("industry");
 			<div class="span-22 content_header">
 			</div>
 			<div class="span-22 content_box">
-			    <img src="http://crunchbase.com/<c:out value="${companies[0].imageUrl}" />" alt="header image" />
-        		<h1><c:out value="${companies[0].name}" /></h1>
-        	    <hr />
-				<div class="companyprofile">
-					<script type="text/javascript">document.write(htmlDecode("<c:out value="${companies[0].overview}"/>"));</script>
-		        	<p>Total money raised: <fmt:formatNumber value="${companies[0].totalMoneyRaised}" type="currency"/></p>
-		        	<p>Money raised over the last 5 years: <fmt:formatNumber value="${companies[0].fiveYearMoneyRaised}" type="currency"/></p>
-		        	<h2>Funding rounds:</h2>
-		        	<ul>
-		          	<c:forEach var="round" items="${companies[0].fundingRounds}">
-		            	<li><c:out value="${round.roundCode}" />: <fmt:formatNumber value="${round.raisedAmount}" type="currency" /></li>
-		          	</c:forEach>
-		        	</ul>
-		        	<a href="http://www.crunchbase.com/company/<c:out value="${companies[0].permalink}"/>">CrunchBase profile</a>
-		        </div>
-        	    <hr />
-		        <a href="/industry/<%=industry%>.htm<% if(location!=null){out.println("?"+location);}%>">Back</a>
+				<div class="span-6 append-1 prepend-1">
+					<br/>
+					<img src="http://crunchbase.com/<c:out value="${companies[0].imageUrl}" />" alt="header image" />
+					<br/><br/>
+					<div class="header_box"><h3>General information</h3></div>
+					<div class="span-3 left">
+						<h5>Website</h5>
+						<h5>CrunchBase</h5>
+						<h5>Industry</h5>
+						<h5>Employees</h5>
+						<h5>Founded</h5>
+					</div>
+					<div class="span-3 last left">
+						<a href="<c:out value="${companies[0].homepageUrl}"/>"><c:out value="${companies[0].name}"/></a><br/>
+						<a href="http://www.crunchbase.com/company/<c:out value="${companies[0].permalink}"/>"><c:out value="${companies[0].name}"/>'s Profile</a><br/>
+						<a href="/industry/<c:out value="${companies[0].industry}"/>.htm"><script type="text/javascript">
+	                    var industry = "<c:out value="${companies[0].industry}"/>";
+	                    switch(industry)
+	                    {
+	                    case "all":
+	                        document.write("All");
+	                        break;
+	                    case "advertising":
+	                        document.write("Advertising");
+	                        break;
+	                    case "biotech":
+	                        document.write("BioTech");
+	                        break;
+	                    case "cleantech":
+	                        document.write("CleanTech");
+	                        break;
+	                    case "hardware":
+	                        document.write("Consumer Electronics/Devices");
+	                        break;
+	                    case "web":
+	                        document.write("Consumer Web");
+	                        break;
+	                    case "ecommerce":
+	                        document.write("eCommerce");
+	                        break;
+	                    case "education":
+	                        document.write("Education");
+	                        break;
+	                    case "enterprise":
+	                        document.write("Enterprise");
+	                        break;
+	                    case "games_video":
+	                        document.write("Games, Video and Entertainment");
+	                        break;
+	                    case "legal":
+	                        document.write("Legal");
+	                        break;
+	                    case "mobile":
+	                        document.write("Mobile/Wireless");
+	                        break;
+	                    case "network_hosting":
+	                        document.write("Network/Hosting");
+	                        break;
+	                    case "consulting":
+	                        document.write("Consulting");
+	                        break;
+	                    case "public_relations":
+	                        document.write("Communications");
+	                        break;
+	                    case "search":
+	                        document.write("Search");
+	                        break;
+	                    case "security":
+	                        document.write("Security");
+	                        break;
+	                    case "semiconductor":
+	                        document.write("Semiconductor");
+	                        break;
+	                    case "software":
+	                        document.write("Software");
+	                        break;
+	                    case "other":
+	                        document.write("Other");
+	                        break;
+	                    default:
+	                        document.write("Error");
+	                    }
+	                 </script></a><br/>
+					 <c:out value="${companies[0].numEmployees}"/><br/>
+					 <c:out value="${companies[0].yearFounded}"/><br/>
+					</div>
+				</div>
+				<div class="span-13 append-1 last left">
+					<br/>
+					<h2><c:out value="${companies[0].name}" /></h2>
+					<hr/>
+					<script type="text/javascript">document.write(htmlDecode("<c:out value="${companies[0].overview}" />"));</script>
+				</div>
+				<hr/>
+			    <a href="/industry/<%=industry%>.htm<% if(location!=null){out.println("?"+location);}%>">Back</a>
 			</div>
 			<c:if test="${companies[1]!=null}">
 			<div class="span-22 content_box">
