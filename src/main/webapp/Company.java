@@ -51,7 +51,7 @@ public class Company {
 	protected void setBlogUrl(String url) { _blogUrl = url; }
 
 	public String getOverview() { return _overview; }
-	protected void setOverview(String overview) { _overview = overview; }
+	public void setOverview(String overview) { _overview = overview; }
 	
 	public int getNumEmployees() { return _numEmployees; }
 	protected void setNumEmployees(int n) { _numEmployees = n; }

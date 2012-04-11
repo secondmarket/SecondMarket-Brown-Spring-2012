@@ -29,7 +29,7 @@ public abstract class CompanyMixIn extends Company {
 	@JsonProperty("permalink") protected abstract void setPermalink(String permalink);
 	@JsonProperty("homepage_url") protected abstract void setHomepageUrl(String url);
 	@JsonProperty("blog_url") protected abstract void setBlogUrl(String url);
-	@JsonProperty("overview") protected abstract void setOverview(String overview);
+	@JsonProperty("overview") public abstract void setOverview(String overview);
 	@JsonProperty("number_of_employees") protected abstract void setNumEmployees(int n);
 	@JsonProperty("total_money_raised") protected abstract void setTotalMoneyRaised(String totalMoney);
 	@JsonProperty("funding_rounds") protected abstract void setFundingRounds(List<FundingRound> rounds);

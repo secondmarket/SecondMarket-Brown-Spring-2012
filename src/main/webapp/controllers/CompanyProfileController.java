@@ -30,6 +30,9 @@ public class CompanyProfileController implements Controller {
 		_logger.info("Returning profile for " + companyName);
 		Company company = _companyDao.findByPermalink(companyName);
 		if (company != null) {
+			String overview = company.getOverview();
+			overview = overview.replaceAll("\\r\\n|\\r|\\n", "<br/>");
+			company.setOverview(overview);
 			List<Company> companies = new ArrayList<Company>();
 			companies.add(company);
 			List<String> competitors = company.getCompetitors();
