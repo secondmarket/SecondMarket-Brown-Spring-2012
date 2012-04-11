@@ -72,7 +72,7 @@ String industry = (String)session.getAttribute("industry");
 			<div class="span-22 content_box">
 				<div class="span-6 append-1 prepend-1">
 					<br/>
-					<img src="http://crunchbase.com/<c:out value="${companies[0].imageUrl}" />" alt="header image" />
+					<img src="http://crunchbase.com/<c:out value="${companies[0].imageUrl}" />" alt="${companies[0].name}" />
 					<br/><br/>
 					<div class="header_box"><h3>General information</h3></div>
 					<div class="span-3 left">
