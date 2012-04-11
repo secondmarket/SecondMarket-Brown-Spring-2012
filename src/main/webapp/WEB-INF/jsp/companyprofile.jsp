@@ -20,12 +20,6 @@ String industry = (String)session.getAttribute("industry");
 	<!--Load the AJAX API-->
     <script type="text/javascript" src="https://www.google.com/jsapi"></script>
     <script type="text/javascript">
-		function htmlDecode(input){
-			var e = document.createElement('div');
-			e.innerHTML = input;
-			return e.childNodes[0].nodeValue;
-		}
-	  <c:if test="${companies[1]!=null}">
       // Load the Visualization API and the piechart package.
       google.load('visualization', '1.0', {'packages':['corechart']});
 
@@ -35,10 +29,13 @@ String industry = (String)session.getAttribute("industry");
       var curryear = new Date().getFullYear();    
 
       function drawCharts() {
+          <c:if test="${companies[1]!=null}">
           drawPieChart();
+          </c:if>
           drawLineChart();
       }
 
+      <c:if test="${companies[1]!=null}">
       // Callback that creates and populates a data table,
       // instantiates the pie chart, passes in the data and
       // draws it.
@@ -62,6 +59,7 @@ String industry = (String)session.getAttribute("industry");
         var chart = new google.visualization.PieChart(document.getElementById('piechart_div'));
         chart.draw(data, options);
       }
+      </c:if>
 
       // draws a chart showing funding by year
       function drawLineChart() {
@@ -98,7 +96,6 @@ String industry = (String)session.getAttribute("industry");
 
         return rows;
       }
-   	  </c:if>
     </script>
     <title><c:out value="${companies[0].name}" /></title>
   </head>
@@ -213,10 +210,10 @@ String industry = (String)session.getAttribute("industry");
 			<div class="span-22 content_box">
 			 	<div id="piechart_div"></div>
 			</div>
+			</c:if>
 			<div class="span-22 content_box">
 			 	<div id="linechart_div"></div>
 			</div>
-			</c:if>
 		</div>
   </body>
 </html>
