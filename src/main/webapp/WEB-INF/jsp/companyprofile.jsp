@@ -124,7 +124,7 @@ String industry = (String)session.getAttribute("industry");
 					</div>
 					<div class="span-3 last left">
 						<a href="<c:out value="${companies[0].homepageUrl}"/>"><c:out value="${companies[0].name}"/></a><br/>
-						<a href="http://www.crunchbase.com/company/<c:out value="${companies[0].permalink}"/>"><c:out value="${companies[0].name}"/>'s Profile</a><br/>
+						<a href="http://www.crunchbase.com/company/${companies[0].permalink}">Profile</a><br/>
 						<a href="/industry/<c:out value="${companies[0].industry}"/>.htm"><script type="text/javascript">
 	                    var industry = "<c:out value="${companies[0].industry}"/>";
 	                    switch(industry)
