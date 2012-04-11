@@ -7,7 +7,7 @@ String location = (String)session.getAttribute("location");
 String industry = (String)session.getAttribute("industry");
 %>
 
-
+<!DOCTYPE HTML>
 <html>
   <head>
     <link rel="stylesheet" href="/css/blueprint/screen.css" type="text/css" media="screen, projection">
@@ -200,11 +200,11 @@ String industry = (String)session.getAttribute("industry");
 					 <c:out value="${companies[0].yearFounded}"/><br/>
 					</div>
 				</div>
-				<div class="span-13 append-1 last left">
+				<div id="company_description" class="span-13 append-1 last left">
 					<br/>
 					<h2><c:out value="${companies[0].name}" /></h2>
 					<hr/>
-					<script type="text/javascript">document.write(htmlDecode("<c:out value="${companies[0].overview}" />"));</script>
+					${companies[0].overview}
 				</div>
 				<hr/>
 			    <a href="/industry/<%=industry%>.htm<% if(location!=null){out.println("?"+location);}%>">Back</a>

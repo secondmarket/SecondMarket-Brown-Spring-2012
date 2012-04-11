@@ -49,8 +49,8 @@ public class Company {
 
 	public String getBlogUrl() { return _blogUrl; }
 	protected void setBlogUrl(String url) { _blogUrl = url; }
-
-	public String getOverview() { return _overview; }
+	
+	public String getOverview() { return _overview.replaceAll("href=\"/", "href=\"http://www.crunchbase.com/").replaceAll("<br/>", ""); }
 	public void setOverview(String overview) { _overview = overview; }
 	
 	public int getNumEmployees() { return _numEmployees; }
@@ -119,7 +119,7 @@ public class Company {
 			_competitors=null;
 			return;
 		}
-		List<String> competitors = new ArrayList();
+		List<String> competitors = new ArrayList<String>();
 		for(Map<String, Map<String, Object>> comps: json){
 			String comp = (String)comps.get("competitor").get("permalink");
 			competitors.add(comp);
