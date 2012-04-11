@@ -11,11 +11,13 @@ $(function() {
 			{ label: "San Francisco, CA" }
 		];
 		$("#tags").autocomplete({
-			source: availableTags,
+			source: "/autocomplete.htm",
+      minLength: 2,
       select: function(event, ui) {
-        // TODO: Change to AJAX request
-        var getParam = ui.item.value.substring(0, ui.item.value.indexOf(','));
-        window.location = "?" + encodeURIComponent(getParam);
+        // TODO: Both companies and locations
+        //var getParam = ui.item.value.substring(0, ui.item.value.indexOf(','));
+        //window.location = "?" + encodeURIComponent(getParam);
+        window.location = "/companies/" + ui.item.value + ".htm";
       }
 		});
 });

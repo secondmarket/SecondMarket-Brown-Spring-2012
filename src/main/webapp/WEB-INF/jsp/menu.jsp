@@ -64,7 +64,7 @@
 				</li>
 			</ul>
 			<div class="ui-widget">
-			    <input id="tags" placeholder="City Search" />
+			    <input id="tags" placeholder="Find city or company" />
 			</div>
 	    </div>
 		<div class="span-24" id="fix_header"></div>
