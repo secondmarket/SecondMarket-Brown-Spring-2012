@@ -8,7 +8,7 @@ $(function() {
 			{ label: "New York, NY" },
 			{ label: "Palo Alto, CA" },
 			{ label: "Seattle, WA" },
-			{ label: "San Fransisco, CA" }
+			{ label: "San Francisco, CA" }
 		];
 		$("#tags").autocomplete({
 			source: availableTags,
