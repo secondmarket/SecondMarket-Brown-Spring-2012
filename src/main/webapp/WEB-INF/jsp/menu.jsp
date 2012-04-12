@@ -42,19 +42,19 @@
 						<div class="col_1">
 							<ul>
 								<li><a href="/industry/<%=industry%>.htm">All</a></li>
-								<li><a href="?Austin">Austin, TX</a></li>
-								<li><a href="?Boston">Boston, MA</a></li>
-								<li><a href="?Cambridge">Cambridge, MA</a></li>
-								<li><a href="?Chicago">Chicago, IL</a></li>
+								<li><a href="/industry/<%=industry%>.htm?Austin">Austin, TX</a></li>
+								<li><a href="/industry/<%=industry%>.htm?Boston">Boston, MA</a></li>
+								<li><a href="/industry/<%=industry%>.htm?Cambridge">Cambridge, MA</a></li>
+								<li><a href="/industry/<%=industry%>.htm?Chicago">Chicago, IL</a></li>
 							</ul>
 						</div>
 						<div class="col_1">
 							<ul>
-								<li><a href="?Mountain%20View">Mountain View, CA</a></li>
-								<li><a href="?New%20York">New York, NY</a></li>
-								<li><a href="?Palo%20Alto">Palo Alto, CA</a></li>
-								<li><a href="?San%20Francisco">San Francisco, CA</a></li>
-								<li><a href="?Seattle">Seattle, WA</a></li>
+								<li><a href="/industry/<%=industry%>.htm?Mountain%20View">Mountain View, CA</a></li>
+								<li><a href="/industry/<%=industry%>.htm?New%20York">New York, NY</a></li>
+								<li><a href="/industry/<%=industry%>.htm?Palo%20Alto">Palo Alto, CA</a></li>
+								<li><a href="/industry/<%=industry%>.htm?San%20Francisco">San Francisco, CA</a></li>
+								<li><a href="/industry/<%=industry%>.htm?Seattle">Seattle, WA</a></li>
 							</ul>
 						</div>
 						<div class="col_1">

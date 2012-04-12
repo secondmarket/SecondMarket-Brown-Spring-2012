@@ -5,6 +5,7 @@
 HttpSession session=request.getSession(true);
 String location = (String)session.getAttribute("location");
 String industry = (String)session.getAttribute("industry");
+if (industry == null) industry = "all";
 %>
 
 <!DOCTYPE HTML>
