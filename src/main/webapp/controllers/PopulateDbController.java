@@ -131,18 +131,14 @@ public class PopulateDbController implements Controller {
 				_gettingData = true;
 				saveCrunchbaseDataToDb();
 			}
-			return new ModelAndView("hello");
+			updateDb();
 		}
 		//if a db update is being requested
 		else if(add.equals("/update_db")){
 			updateDb();
-			return new ModelAndView("hello");
 		}
 		//if something else is being requested
-		else{
-			return new ModelAndView("hello");
-		}
+		return new ModelAndView("hello");
 	}
-    
     
 }

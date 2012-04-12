@@ -38,24 +38,23 @@
 					</div>
 				</li>
 				<li><a href="#" class="drop">Location</a>
-					<div class="dropdown_3columns">
+					<div class="dropdown_2columns">
 						<div class="col_1">
 							<ul>
 								<li><a href="/industry/<%=industry%>.htm">All</a></li>
-								<li><a href="?San%20Francisco">San Francisco</a></li>
-								<li><a href="?New%20York">New York</a></li>
-								<li><a href="?London">London</a></li>
-								<li><a href="?Cambridge">Cambridge</a></li>
-								<li><a href="?Palo%20Alto">Palo Alto</a></li>
-								<li><a href="?Mountain%20View">Mountain View</a></li>
+								<li><a href="?Austin">Austin, TX</a></li>
+								<li><a href="?Boston">Boston, MA</a></li>
+								<li><a href="?Cambridge">Cambridge, MA</a></li>
+								<li><a href="?Chicago">Chicago, IL</a></li>
 							</ul>
 						</div>
 						<div class="col_1">
 							<ul>
-								<li><a href="?Boston">Boston</a></li>
-								<li><a href="?Seattle">Seattle</a></li>
-								<li><a href="?Chicago">Chicago</a></li>
-								<li><a href="?Austin">Austin</a></li>
+								<li><a href="?Mountain%20View">Mountain View, CA</a></li>
+								<li><a href="?New%20York">New York, NY</a></li>
+								<li><a href="?Palo%20Alto">Palo Alto, CA</a></li>
+								<li><a href="?San%20Francisco">San Francisco, CA</a></li>
+								<li><a href="?Seattle">Seattle, WA</a></li>
 							</ul>
 						</div>
 						<div class="col_1">

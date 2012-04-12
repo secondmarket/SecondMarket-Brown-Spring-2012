@@ -10,14 +10,9 @@
     <title>Hello Brown!</title>
   </head>
   <body>
-			<a href="populate_db.htm">Populate List</a><br/>
-	    	<a href="populate_financial.htm">Populate Financial Orgs</a><br/>
-	    	<a href="update_db.htm">Five Year</a></br>
-	    	<a href="list.htm">View company list</a><br/>
-	    	<a href="vis1.htm">View block graph of companies by funding recieved</a><br/>
-	    	<a href="vis2.htm">View block graph of financial organizations by investments 		made</a><br/>
-	    	<a href="vis3.htm">View Map</a></br>
-	    	<a href="mapstest.htm">View Google Map</a></br>
+			<a href="populate_db.htm">Populate Database (takes about an hour)</a><br/>
+	    	<a href="populate_financial.htm">Update financial organizations (takes a few minutes)</a><br/>
+	    	<a href="update_db.htm">Update database (takes a few minutes)</a></br>
 			<a href="/industry/all.htm">View Site!</a>
   </body>
 </html>

@@ -46,18 +46,6 @@
 	   	<constructor-arg ref="companyDao" />
 	   </bean>
 	   
-	   <bean name="/vis2.htm" class="webapp.controllers.VisualizeFinancialController">
-	   	<constructor-arg ref="financialOrgDao" />
-	   </bean>
-	   
-	   <bean name="/vis3.htm" class="webapp.controllers.VisualizeMapController">
-	   	<constructor-arg ref="companyDao" />
-	   </bean>
-	   
-	   <bean name="/mapstest.htm" class="webapp.controllers.VisualizeDbController">
-	   	<constructor-arg ref="companyDao" />
-	   </bean>
-
 	   <bean name="/autocomplete.htm" class="webapp.controllers.AutocompleteController">
 	   	<constructor-arg ref="companyDao" />
 	   </bean>
