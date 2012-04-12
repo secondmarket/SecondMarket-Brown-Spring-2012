@@ -1,1 +1,7 @@
-Test
+Instructions
+
+1. Pull from GitHub and install all Maven dependencies
+2. Start a local mongoDb instance
+3. Start the app using 'mvn jetty:run'
+4. Navigate to localhost:8080 and click 'Populate database'.  This will take about an hour.
+5. Once the database is populated, click 'View site!' and enjoy!
