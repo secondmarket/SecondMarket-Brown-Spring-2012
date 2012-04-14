@@ -50,8 +50,10 @@ if (industry == null) industry = "all";
         var data = new google.visualization.DataTable();
         data.addColumn('string', 'Company');
         data.addColumn('number', 'Funding');
-             
+        
+     	var permalinks = {};
         <c:forEach var="company" items="${companies}">
+			 permalinks["${company.name}"] = "${company.permalink}";
 		     data.addRow(['<c:out value="${company.name}"/>',<c:out value="${company.fiveYearMoneyRaised}"/>]);
 		</c:forEach>
 		
@@ -62,6 +64,18 @@ if (industry == null) industry = "all";
 
         // Instantiate and draw our chart, passing in some options.
         var chart = new google.visualization.PieChart(document.getElementById('piechart_div'));
+
+		function selectHandler() {
+			var selectedItem = chart.getSelection()[0];
+			if(selectedItem){
+				var compname = data.getValue(selectedItem.row,0);
+				var perma = permalinks[compname];
+				if(perma!=undefined){window.location="/companies/"+perma+".htm"}
+			}
+		}
+		
+		google.visualization.events.addListener(chart, 'select', selectHandler);
+		
         chart.draw(data, options);
       }
       </c:if>
