@@ -193,6 +193,7 @@ session.setAttribute("location", location);
         var map;
         var geocoder;
         var mc;
+        var infoBox;
 
         // center over the middle of the US
         var myOptions = {
@@ -208,8 +209,7 @@ session.setAttribute("location", location);
           <c:if test="${!empty company.offices}"> 
             var location = {};
             <c:choose>
-              <c:when test="${company.offices[0].latitude != 0 && 
-              	company.offices[0].longitude != -95.712891 }">
+              <c:when test="${false}">
                 var latLong = new google.maps.LatLng(<c:out value="${company.offices[0].latitude}"/>, 
                 	<c:out value="${company.offices[0].longitude}"/>);
                 /*
@@ -229,7 +229,6 @@ session.setAttribute("location", location);
                   'title': "<c:out value="${company.name}"/>" });
                 marker.totalMoneyRaised = <c:out value="${company.totalMoneyRaised}"/>;
 
-                var infoBox = null;
                 google.maps.event.addListener(marker, "click", function() {
                   if (infoBox) infoBox.close();
                   infoBox = new InfoBox({
@@ -248,22 +247,59 @@ session.setAttribute("location", location);
                 markers.push(marker);
               </c:when>
               <c:otherwise>
-                var address = "<c:out value="${company.offices[0].address}"/>";
+                var address = "${company.offices[0].address}";
                 <c:if test="${!empty company.offices[0].city}">
-                  address += ", <c:out value="${company.offices[0].city}"/>";
+                  address += ", ${company.offices[0].city}";
                   <c:if test="${!empty company.offices[0].state}">
-                    address += ", <c:out value="${company.offices[0].state}"/>";
+                    address += ", ${company.offices[0].state}";
                   </c:if>
+
+                  var geoUrl = "http://www.mapquestapi.com/geocoding/v1/address?key=Fmjtd%7Cluua2quz2u%2Cbg%3Do5-hzyxg&location=" + encodeURIComponent(address);
+                  $.ajax(geoUrl, {
+                    crossDomain: true, 
+                    dataType: 'jsonp',
+                    success: function(data) {
+                      if (data.info.statuscode === 0) {
+                        var location = data.results[0].locations[0];
+                        var latLong = new google.maps.LatLng(location.latLng.lat, location.latLng.lng);
+                        var marker = new google.maps.Marker({
+                          'position': latLong, 
+                          'title': '${company.name}' });
+                        marker.totalMoneyRaised = ${company.totalMoneyRaised};
+                        google.maps.event.addListener(marker, "click", function() {
+                          if (infoBox) infoBox.close();
+                          infoBox = new InfoBox({
+                            'alignBottom': true,
+                            'pixelOffset': new google.maps.Size(0, -25),
+                              'boxStyle': { 'border': '1px solid gray', 'padding-left': '10px', 
+                              'font-family': 'sans-serif', 'color': 'black', 'background-color': '#ddefdd', 
+                              'opacity': 0.8 },
+                            'closeBoxMargin': '0px 0px',
+                            'content': "<h3><a href='/companies/${company.permalink}.htm'/>${company.name}</a></h3> \
+                                        <h4>Industry: ${company.industry}</h4> \
+                                        <h4>Money raised: <fmt:formatNumber value="${company.totalMoneyRaised}" type="currency" /></h4>"
+                          });
+                          infoBox.open(map, this);
+                        });
+                        mc.addMarker(marker);
+                      } else {
+                        console.log('Geocode failure: ' + data.info.statuscode);
+                      }
+                    }
+                  });
+
+                  /* Google geocoding: Not used due to rate limit
                   geocoder.geocode({'address': address}, function(results, status) {
                     if (status == google.maps.GeocoderStatus.OK) {
                       var latLong = results[0].geometry.location;
                       var marker = new google.maps.Marker({
                       	'position': latLong, 
-                      	'title': "<c:out value="${company.name}"/>" });
-    	              marker.totalMoneyRaised = <c:out value="${company.totalMoneyRaised}"/>;
+                      	'title': "${company.name}" });
+    	              marker.totalMoneyRaised = ${company.totalMoneyRaised};
                       markers.push(marker);
                     }
                   });
+                  */
                 </c:if>
               </c:otherwise>
             </c:choose>
@@ -272,6 +308,7 @@ session.setAttribute("location", location);
         
         mc = new MarkerClusterer(map, markers);        
       }
+
 
       // draws a chart showing funding by year
       function drawByYearChart() {
