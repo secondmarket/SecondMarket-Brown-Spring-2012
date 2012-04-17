@@ -62,11 +62,11 @@
 }
 
 .header_box{
-	display:block;
 	background:#C0C0C0;
 	padding:4px;
 	text-align:center;
 	margin-bottom:4px;
+	margin-top:4px;
 }
 
 h3{

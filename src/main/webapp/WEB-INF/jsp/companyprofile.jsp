@@ -84,20 +84,36 @@ if (industry == null) industry = "all";
       function drawLineChart() {
         var data = new google.visualization.DataTable();
         data.addColumn('string', 'Year');
-        data.addColumn('number', 'Money Raised');
+  		<c:forEach items="${companies}" var="company">
+			data.addColumn('number',"<c:out value="${company.name}"/>");
+		</c:forEach>
+		data.addRows(8);
+		for(var i=0; i<=7;i++){
+			var year = curryear - (7-i);
+			data.setCell(i,0,year.toString());
+		}
         var rows = {};
-        <c:set var="company" value="${companies[0]}"/>
-        <c:forEach items="${company.fundingRounds}" var="round">
-          var funyear = <c:out value="${round.year}"/>;
-          if ((curryear - funyear) < 10 && (curryear - funyear) > 0) {
-            if (rows[funyear]) {
-              rows[funyear] += <c:out value="${round.raisedAmount}"/>;
-            } else {
-              rows[funyear] = <c:out value="${round.raisedAmount}"/>;
-            }
-          }
-        </c:forEach>
-        data.addRows(jsonToRows(rows));
+		var count = 1;
+		<c:forEach items="${companies}" var="company">
+			rows = {};
+       	 	<c:forEach items="${company.fundingRounds}" var="round">
+	          var funyear = <c:out value="${round.year}"/>;
+	          if ((curryear - funyear) < 8 && (curryear - funyear) > 0) {
+	           	 if (rows[funyear]) {
+		              rows[funyear] += <c:out value="${round.raisedAmount}"/>;
+		            } else {
+		              rows[funyear] = <c:out value="${round.raisedAmount}"/>;
+		            }
+		          }
+	        </c:forEach>
+			for(var i=0; i<=7;i++){
+				var year = curryear - (7-i);
+				if(rows[year]!=null){data.setCell(i,count,rows[year]);}
+				else{data.setCell(i,count,0);}
+			}
+			count++;
+		</c:forEach>
+		
 
         var options = {
           title: 'Total Funding by Year',
@@ -107,14 +123,6 @@ if (industry == null) industry = "all";
         chart.draw(data, options);
       }
 
-      function jsonToRows(json) {
-        var rows = [];
-        for (var key in json) {
-            rows.push([key, json[key]]);
-        }
-
-        return rows;
-      }
     </script>
     <title><c:out value="${companies[0].name}" /></title>
   </head>
@@ -133,7 +141,7 @@ if (industry == null) industry = "all";
 					<br/>
 					<img src="http://crunchbase.com/<c:out value="${companies[0].imageUrl}" />" alt="${companies[0].name}" />
 					<br/><br/>
-					<div class="header_box"><h3>General information</h3></div>
+					<div class=" span 6 header_box"><h3>General information</h3></div>
 					<div class="span-3 left">
 						<h5>Website</h5>
 						<h5>CrunchBase</h5>
@@ -215,6 +223,8 @@ if (industry == null) industry = "all";
 					 <c:out value="${companies[0].numEmployees}"/><br/>
 					 <c:out value="${companies[0].yearFounded}"/><br/>
 					</div>
+					<br/>
+					<div class="span-6 header_box"><h3>Funding</h3></div>
 				</div>
 				<div id="company_description" class="span-13 append-1 last left">
 					<br/>
