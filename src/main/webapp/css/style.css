@@ -75,7 +75,10 @@ h3{
 .left{
 	text-align:left;
 }
+
+.right{
+	text-align:right;
+}
 #company_description p{
 	margin-bottom: 12px;
-}
 }

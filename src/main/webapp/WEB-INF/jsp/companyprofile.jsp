@@ -142,14 +142,14 @@ if (industry == null) industry = "all";
 					<img src="http://crunchbase.com/<c:out value="${companies[0].imageUrl}" />" alt="${companies[0].name}" />
 					<br/><br/>
 					<div class=" span 6 header_box"><h3>General information</h3></div>
-					<div class="span-3 left">
+					<div class="span-2 left">
 						<h5>Website</h5>
 						<h5>CrunchBase</h5>
 						<h5>Industry</h5>
 						<h5>Employees</h5>
 						<h5>Founded</h5>
 					</div>
-					<div class="span-3 last left">
+					<div class="span-4 last left">
 						<a href="<c:out value="${companies[0].homepageUrl}"/>"><c:out value="${companies[0].name}"/></a><br/>
 						<a href="http://www.crunchbase.com/company/${companies[0].permalink}">Profile</a><br/>
 						<a href="/industry/<c:out value="${companies[0].industry}"/>.htm"><script type="text/javascript">
@@ -169,7 +169,7 @@ if (industry == null) industry = "all";
 	                        document.write("CleanTech");
 	                        break;
 	                    case "hardware":
-	                        document.write("Consumer Electronics/Devices");
+	                        document.write("Consumer Electronics");
 	                        break;
 	                    case "web":
 	                        document.write("Consumer Web");
@@ -184,7 +184,7 @@ if (industry == null) industry = "all";
 	                        document.write("Enterprise");
 	                        break;
 	                    case "games_video":
-	                        document.write("Games, Video and Entertainment");
+	                        document.write("Entertainment");
 	                        break;
 	                    case "legal":
 	                        document.write("Legal");
@@ -225,6 +225,20 @@ if (industry == null) industry = "all";
 					</div>
 					<br/>
 					<div class="span-6 header_box"><h3>Funding</h3></div>
+					<div class="span-4 left">
+						<h5>TOTAL</h5>
+						<hr/>
+				      	<c:forEach items="${companies[0].fundingRounds}" var="round">
+							<h5>${round.roundCode}, ${round.year}</h5>
+					    </c:forEach>
+					</div>
+					<div class="span-2 last right">
+						<h5>${companies[0].totalMoneyRaised}</h5>
+						<hr/>
+						<c:forEach items="${companies[0].fundingRounds}" var="round">
+							<h5>${round.raisedAmount}</h5>
+					    </c:forEach>
+					</div>
 				</div>
 				<div id="company_description" class="span-13 append-1 last left">
 					<br/>
