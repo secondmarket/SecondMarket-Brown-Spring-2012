@@ -229,14 +229,14 @@ if (industry == null) industry = "all";
 						<h5>TOTAL</h5>
 						<hr/>
 				      	<c:forEach items="${companies[0].fundingRounds}" var="round">
-							<h5>${round.roundCode}, ${round.year}</h5>
+							<h5>${round.roundName}, ${round.year}</h5>
 					    </c:forEach>
 					</div>
 					<div class="span-2 last right">
-						<h5>${companies[0].totalMoneyRaised}</h5>
+						<h5>${companies[0].formattedTotalMoneyRaised}</h5>
 						<hr/>
 						<c:forEach items="${companies[0].fundingRounds}" var="round">
-							<h5>${round.raisedAmount}</h5>
+							<h5>${round.formattedRaisedAmount}</h5>
 					    </c:forEach>
 					</div>
 				</div>

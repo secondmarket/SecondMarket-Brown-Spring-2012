@@ -264,7 +264,7 @@ session.setAttribute("location", location);
                         var latLong = new google.maps.LatLng(location.latLng.lat, location.latLng.lng);
                         var marker = new google.maps.Marker({
                           'position': latLong, 
-                          'title': '${company.name}' });
+                          'title': "${company.name}" });
                         marker.totalMoneyRaised = ${company.totalMoneyRaised};
                         google.maps.event.addListener(marker, "click", function() {
                           if (infoBox) infoBox.close();

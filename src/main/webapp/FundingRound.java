@@ -47,6 +47,7 @@ public class FundingRound {
 	protected void setRoundCode(String roundCode) { _roundCode = roundCode; }
 	
 	public double getRaisedAmount() { return _raisedAmount; }
+	public String getFormattedRaisedAmount() { return Formatter.formatMonetaryValue(_raisedAmount); }
 	protected void setRaisedAmount(double raisedAmount) { _raisedAmount = raisedAmount; }
 
 	public int getDay() { return _day; }

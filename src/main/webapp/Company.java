@@ -69,8 +69,9 @@ public class Company {
 			_imageUrl = (String) l.get(0).get(1);
 		}
 	}
-		
+
 	public double getTotalMoneyRaised() { return _totalMoneyRaised; }
+	public String getFormattedTotalMoneyRaised() { return Formatter.formatMonetaryValue(_totalMoneyRaised); }
 	protected void setTotalMoneyRaised(String totalMoney) {
 		int len = totalMoney.length();
 		char type = totalMoney.charAt(len - 1);
