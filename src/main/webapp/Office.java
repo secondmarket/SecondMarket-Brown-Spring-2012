@@ -28,10 +28,10 @@ public class Office {
 	protected void setCountry(String country) { _country = country == null ? country : country.trim(); }
 	
 	public double getLatitude() {return _latitude;}
-	protected void setLatitude(double latitude) { _latitude = latitude; }
+	public void setLatitude(double latitude) { _latitude = latitude; }
 	
 	public double getLongitude() {return _longitude;}
-	protected void setLongitude(double longitude) { _longitude = longitude; }
+	public void setLongitude(double longitude) { _longitude = longitude; }
 	
 	public String getAddress() { return _address1 + " " + _address2; }
 	protected void setAddress1(String address1) { _address1 = address1; }
