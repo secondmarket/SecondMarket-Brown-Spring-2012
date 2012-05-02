@@ -16,8 +16,8 @@
 	/* Background color and gradients */
 	
 	background: #F4F4F4;
-	background: -moz-linear-gradient(top, #F4F4F4, #EEEEEE);
-	background: -webkit-gradient(linear, 0% 0%, 0% 100%, from(#F4F4F4), to(#EEEEEE));
+	background: -moz-linear-gradient(top, #F4F4F4, #EFEFEF);
+	background: -webkit-gradient(linear, 0% 0%, 0% 100%, from(#F4F4F4), to(#EFEFEF));
 	
 	/* Rounded corners */
 	
@@ -64,8 +64,8 @@
 	
 	/* Gradient background */
 	background:#F4F4F4;
-	background: -moz-linear-gradient(top, #EEEEEE, #BBBBBB);
-	background: -webkit-gradient(linear, 0% 0%, 0% 100%, from(#EEEEEE), to(#BBBBBB));
+	background: -moz-linear-gradient(top, #EFEFEF, #CFCFCF);
+	background: -webkit-gradient(linear, 0% 0%, 0% 100%, from(#EFEFEF), to(#CFCFCF));
 
 	/* Rounded Corners */
 	-moz-border-radius: 0px 5px 5px 5px;
@@ -133,7 +133,7 @@
 
 #menu li:hover div a {
 	font-size:12px;
-	color:#015b86;
+	color:#014b96;
 }
 #menu li:hover div a:hover {
 	color:#029feb;
@@ -211,9 +211,9 @@
 
 	/* Rounded Corners */
 	-moz-border-radius: 5px;
-    -webkit-border-radius: 5px;
-    -khtml-border-radius: 5px;
-    border-radius: 5px;
+	-webkit-border-radius: 5px;
+	-khtml-border-radius: 5px;
+	border-radius: 5px;
 }
 #menu li .greybox li:hover {
 	background:#ffffff;
@@ -223,7 +223,11 @@
 }
 
 .ui-widget > #tags {
-    margin-top: -3px;
+	margin-top: -3px;
+}
+
+#tags {
+	width: 180px;    
 }
 
 #logo {

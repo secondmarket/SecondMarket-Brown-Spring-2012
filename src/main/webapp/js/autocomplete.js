@@ -1,19 +1,21 @@
 $(function() {
-		$("#tags").autocomplete({
+    $("#tags").autocomplete({
       source: function(request, response) {
-				$.ajax({
-					url: "/autocomplete.htm",
-					dataType: "json",
-					data: {
-						maxRows: 15,
-						startsWith: request.term
-					},
-					success: function(data) {
-						response(data);
-					}
-				});
-			},
+        $.ajax({
+          url: "/autocomplete.htm",
+          dataType: "json",
+          data: {
+            maxRows: 15,
+            startsWith: request.term
+          },
+          success: function(data) {
+            response(data);
+          }
+        });
+      },
       minLength: 2,
+      appendTo: '#header',
+      open: function() { $('#header .ui-menu').width(180); },
       select: function(event, ui) {
         if (ui.item.type === "c") { // company
           window.location = "/companies/" + ui.item.value + ".htm";
@@ -25,5 +27,5 @@ $(function() {
           }
         }
       }
-		});
+    })
 });

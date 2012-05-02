@@ -16,7 +16,7 @@ if (industry == null) industry = "all";
 	<!--[if lt IE 8]>
   	<link rel="stylesheet" href="/css/blueprint/ie.css" type="text/css" media="screen, projection">
 	<![endif]-->
-    <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.8/themes/ui-lightness/jquery-ui.css">
+    <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.8/themes/cupertino/jquery-ui.css">
 	<link rel="stylesheet" href="/css/menu.css" type="text/css" media="all">
 	<link rel="stylesheet" href="/css/style.css" type="text/css" media="all">
 	<!--Load the AJAX API-->
